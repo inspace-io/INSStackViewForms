@@ -1,0 +1,10 @@
+PODS:
+  - INSNibLoading (1.0.0)
+
+DEPENDENCIES:
+  - INSNibLoading
+
+SPEC CHECKSUMS:
+  INSNibLoading: 8fe16319badd041a0aa68dfed080f2157ac4c8ce
+
+COCOAPODS: 0.39.0

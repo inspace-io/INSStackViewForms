@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionHeaderView">
+            <connections>
+                <outlet property="titleLabel" destination="tA8-bO-cGf" id="GYd-py-jlk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="249" height="39"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNe-j2-jVh">
+                    <rect key="frame" x="0.0" y="0.0" width="249" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA8-bO-cGf">
+                            <rect key="frame" x="8" y="0.0" width="233" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="39" id="Jhi-0d-0UC"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tA8-bO-cGf" secondAttribute="bottom" id="ZAi-nQ-KC9"/>
+                        <constraint firstItem="tA8-bO-cGf" firstAttribute="leading" secondItem="NNe-j2-jVh" secondAttribute="leading" constant="8" id="tHQ-LX-7kc"/>
+                        <constraint firstAttribute="trailing" secondItem="tA8-bO-cGf" secondAttribute="trailing" constant="8" id="td4-cl-uPb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="NNe-j2-jVh" secondAttribute="trailing" id="2xJ-L7-hRq"/>
+                <constraint firstItem="NNe-j2-jVh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jb3-d7-zdX"/>
+                <constraint firstItem="NNe-j2-jVh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QR3-mv-1ho"/>
+                <constraint firstAttribute="bottom" secondItem="NNe-j2-jVh" secondAttribute="bottom" id="zgN-OA-L8u"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="259.5" y="124.5"/>
+        </view>
+    </objects>
+</document>
