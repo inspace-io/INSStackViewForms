@@ -36,13 +36,7 @@
     
     __weak typeof(self) weakSelf = self;
     item.actionBlock = ^(INSStackViewFormView *view) {
-        [UIView animateWithDuration:0.25 animations:^{
-            view.hidden = YES;
-        } completion:^(BOOL finished) {
-            [weakSelf removeItem:view.item fromSection:view.section];
-        }];
-        
-        
+        [weakSelf removeItem:view.item fromSection:view.section animated:NO completion:nil];
     };
     
     [self insertItem:item atIndex:1 toSection:self.sections[0]];

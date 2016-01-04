@@ -135,6 +135,27 @@
     return NSNotFound;
 }
 
+- (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
+    if (animated) {
+        UIView *viewForItem = [self viewForItem:item inSection:section];
+        [self.stackView sendSubviewToBack:viewForItem];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            viewForItem.hidden = YES;
+        } completion:^(BOOL finished) {
+            [self removeItem:item fromSection:section];
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        [self removeItem:item fromSection:section];
+        if (completion) {
+            completion();
+        }
+    }
+}
+
 - (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section {
     [self.sections enumerateObjectsUsingBlock:^(INSStackViewFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -177,6 +198,7 @@
         [self configureItemView:itemView forItem:item section:section];
         
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex + index];
+        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
         
         return itemView;
     }
@@ -186,19 +208,71 @@
     return [self insertItem:item atIndex:section.items.count toSection:section];
 }
 
+- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section {
+    for (INSStackViewFormSection *object in self.sections) {
+        if (object == section) {
+            NSInteger startIndex = [self startIndexForSection:section];
+            NSInteger itemCount = object.items.count;
+            if (object.headerItem) {
+                itemCount++;
+            }
+            if (object.footerItem) {
+                itemCount++;
+            }
+            return [self.stackView.arrangedSubviews objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, itemCount)]];
+        }
+    }
+    return nil;
+}
+
+- (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section {
+    for (INSStackViewFormSection *object in self.sections) {
+        if (object == section) {
+            NSInteger startIndex = [self startIndexForSection:section];
+            if (object.headerItem) {
+                startIndex++;
+            }
+            for (INSStackViewFormItem *itemObject in object.items) {
+                if (itemObject == item) {
+                    return [self.stackView.arrangedSubviews objectAtIndex:startIndex];
+                }
+                startIndex++;
+            }
+        }
+    }
+    return nil;
+}
+
+- (void)removeSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
+    if (animated) {
+        NSArray <UIView *> *subviews = [self viewsForSection:section];
+        [[subviews.reverseObjectEnumerator allObjects] enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.stackView sendSubviewToBack:obj];
+        }];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            for (UIView *view in subviews) {
+                view.hidden = YES;
+            }
+        } completion:^(BOOL finished) {
+            [self removeSection:section];
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        [self removeSection:section];
+        if (completion) {
+            completion();
+        }
+    }
+}
+
 - (void)removeSection:(INSStackViewFormSection *)section {
     NSMutableArray *mutableSections = [self.sections mutableCopy];
     [self.sections enumerateObjectsUsingBlock:^(INSStackViewFormSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj == section) {
-            NSInteger startIndex = [self startIndexForSection:section];
-            NSInteger itemCount = obj.items.count;
-            if (obj.headerItem) {
-                itemCount++;
-            }
-            if (obj.footerItem) {
-                itemCount++;
-            }
-            NSArray *subviews = [self.stackView.arrangedSubviews objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, itemCount)]];
+            NSArray *subviews = [self viewsForSection:section];
             for (UIView *view in subviews) {
                 [self.stackView removeArrangedSubview:view];
                 [view removeFromSuperview];
@@ -225,18 +299,21 @@
     if (section.headerItem) {
         UIView *itemView = [self intitializeItemViewForItem:section.headerItem section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
+        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
         [insertedViews addObject:itemView];
         startIndex++;
     }
     [section.items enumerateObjectsUsingBlock:^(INSStackViewFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *itemView = [self intitializeItemViewForItem:obj section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
+        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
         [insertedViews addObject:itemView];
         startIndex++;
     }];
     if (section.footerItem) {
         UIView *itemView = [self intitializeItemViewForItem:section.footerItem section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
+        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
         [insertedViews addObject:itemView];
     }
     return [insertedViews copy];
@@ -245,6 +322,7 @@
 - (void)intitializeAndAddItemViewForItem:(INSStackViewFormItem *)item section:(INSStackViewFormSection *)section {
     UIView *itemView = [self intitializeItemViewForItem:item section:section];
     [self.stackView addArrangedSubview:itemView];
+    [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
 }
 
 - (UIView *)intitializeItemViewForItem:(INSStackViewFormItem *)item section:(INSStackViewFormSection *)section {

@@ -38,11 +38,18 @@
 - (void)reloadData;
 - (void)reloadViewsOnly;
 
+- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section;
+- (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section;
+
+- (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
 - (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section;
+
 - (__kindof UIView *)addItem:(INSStackViewFormItem *)item toSection:(INSStackViewFormSection *)section;
 - (__kindof UIView *)insertItem:(INSStackViewFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackViewFormSection *)section;
 
+- (void)removeSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
 - (void)removeSection:(INSStackViewFormSection *)section;
+
 - (NSArray <__kindof UIView *> *)addSection:(INSStackViewFormSection *)section;
 - (NSArray <__kindof UIView *> *)insertSection:(INSStackViewFormSection *)section atIndex:(NSUInteger)index;
 

@@ -160,6 +160,8 @@
 
 
 - (void)configure {
+    self.clipsToBounds = YES;
+    
     if (self.item.userInteractionEnabled) {
         [self removeTarget:self action:@selector(userDidSelectView:) forControlEvents:UIControlEventTouchUpInside];
         [self addTarget:self action:@selector(userDidSelectView:) forControlEvents:UIControlEventTouchUpInside];
