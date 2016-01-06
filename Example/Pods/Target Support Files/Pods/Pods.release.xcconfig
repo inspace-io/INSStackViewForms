@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/INSNibLoading"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/INSNibLoading"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"INSNibLoading"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/INSNibLoading" "${PODS_ROOT}/Headers/Public/OAStackView"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/INSNibLoading" -isystem "${PODS_ROOT}/Headers/Public/OAStackView"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"INSNibLoading" -l"OAStackView"
 PODS_ROOT = ${SRCROOT}/Pods

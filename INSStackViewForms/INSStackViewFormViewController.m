@@ -35,8 +35,19 @@
 
 @implementation INSStackViewFormViewController
 
++ (Class)scrollViewClass {
+    return [UIScrollView class];
+}
++ (Class)stackViewClass {
+    return [UIStackView class];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    if (!NSClassFromString(@"UIStackView")) {
+        NSAssert([[self class] stackViewClass] != NSClassFromString(@"UIStackView"), @"Please use INSOAStackViewFormViewController if you are targeting iOS 8 or earlier.");
+    }
     
     [self configureScrollView];
     [self configureStackView];
@@ -44,33 +55,35 @@
     [self reloadData];
 }
 
+#pragma mark - Initial Configuration
+
 - (void)configureScrollView {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView = [[[[self class] scrollViewClass] alloc] initWithFrame:self.view.bounds];
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.scrollView];
     
-    [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-    [self.scrollView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
-    [self.scrollView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
-    [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollView)]];
 }
 
 - (void)configureStackView {
-    self.stackView = [[UIStackView alloc] initWithFrame:self.scrollView.bounds];
+    self.stackView = [[[[self class] stackViewClass] alloc] initWithFrame:self.scrollView.bounds];
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     self.stackView.axis = UILayoutConstraintAxisVertical;
     [self.scrollView addSubview:self.stackView];
     
-    [self.stackView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor].active = YES;
-    [self.stackView.leadingAnchor constraintEqualToAnchor:self.scrollView.leadingAnchor].active = YES;
-    [self.stackView.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor].active = YES;
-    [self.stackView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor].active = YES;
-    [self.stackView.widthAnchor constraintEqualToAnchor:self.scrollView.widthAnchor].active = YES;
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_stackView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView)]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_stackView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView)]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_stackView(==_scrollView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,_scrollView)]];
 }
+
+#pragma mark - Subclass
 
 - (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections {
     return [@[] mutableCopy];
 }
+
+#pragma mark - Reload
 
 - (void)reloadData {
     self.sections = [[self initialCollectionSections] copy];
@@ -115,6 +128,25 @@
     [self.stackView layoutIfNeeded];
 }
 
+#pragma mark - Private
+
+- (NSUInteger)startIndexForSection:(INSStackViewFormSection *)searchingSection {
+    NSUInteger index = 0;
+    for (INSStackViewFormSection *section in self.sections) {
+        if (section == searchingSection) {
+            return index;
+        }
+        
+        if (section.headerItem || section.footerItem) {
+            index++;
+        }
+        index += section.items.count;
+    }
+    return NSNotFound;
+}
+
+#pragma mark - Public
+
 - (INSStackViewFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackViewFormSection *)section {
     for (INSStackViewFormItem *item in section.items) {
         if ([item.identifier isEqualToString:identifier]) {
@@ -133,19 +165,39 @@
     return nil;
 }
 
-- (NSUInteger)startIndexForSection:(INSStackViewFormSection *)searchingSection {
-    NSUInteger index = 0;
-    for (INSStackViewFormSection *section in self.sections) {
-        if (section == searchingSection) {
-            return index;
+- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section {
+    for (INSStackViewFormSection *object in self.sections) {
+        if (object == section) {
+            NSInteger startIndex = [self startIndexForSection:section];
+            NSInteger itemCount = object.items.count;
+            if (object.headerItem) {
+                itemCount++;
+            }
+            if (object.footerItem) {
+                itemCount++;
+            }
+            return [self.stackView.arrangedSubviews objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, itemCount)]];
         }
-        
-        if (section.headerItem || section.footerItem) {
-            index++;
-        }
-        index += section.items.count;
     }
-    return NSNotFound;
+    return nil;
+}
+
+- (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section {
+    for (INSStackViewFormSection *object in self.sections) {
+        if (object == section) {
+            NSInteger startIndex = [self startIndexForSection:section];
+            if (object.headerItem) {
+                startIndex++;
+            }
+            for (INSStackViewFormItem *itemObject in object.items) {
+                if (itemObject == item) {
+                    return [self.stackView.arrangedSubviews objectAtIndex:startIndex];
+                }
+                startIndex++;
+            }
+        }
+    }
+    return nil;
 }
 
 - (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
@@ -201,6 +253,10 @@
     }];
 }
 
+- (__kindof UIView *)addItem:(INSStackViewFormItem *)item toSection:(INSStackViewFormSection *)section {
+    return [self insertItem:item atIndex:section.items.count toSection:section];
+}
+
 - (__kindof UIView *)insertItem:(INSStackViewFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackViewFormSection *)section {
     NSUInteger sectionIndex = [self.sections indexOfObject:section];
     if (sectionIndex != NSNotFound) {
@@ -211,50 +267,13 @@
         [self configureItemView:itemView forItem:item section:section];
         
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex + index];
-        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
+        [self.stackView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==_stackView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,itemView)]];
         
         return itemView;
     }
     return nil;
 }
-- (__kindof UIView *)addItem:(INSStackViewFormItem *)item toSection:(INSStackViewFormSection *)section {
-    return [self insertItem:item atIndex:section.items.count toSection:section];
-}
 
-- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section {
-    for (INSStackViewFormSection *object in self.sections) {
-        if (object == section) {
-            NSInteger startIndex = [self startIndexForSection:section];
-            NSInteger itemCount = object.items.count;
-            if (object.headerItem) {
-                itemCount++;
-            }
-            if (object.footerItem) {
-                itemCount++;
-            }
-            return [self.stackView.arrangedSubviews objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, itemCount)]];
-        }
-    }
-    return nil;
-}
-
-- (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section {
-    for (INSStackViewFormSection *object in self.sections) {
-        if (object == section) {
-            NSInteger startIndex = [self startIndexForSection:section];
-            if (object.headerItem) {
-                startIndex++;
-            }
-            for (INSStackViewFormItem *itemObject in object.items) {
-                if (itemObject == item) {
-                    return [self.stackView.arrangedSubviews objectAtIndex:startIndex];
-                }
-                startIndex++;
-            }
-        }
-    }
-    return nil;
-}
 
 - (void)removeSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
     if (animated) {
@@ -312,30 +331,36 @@
     if (section.headerItem) {
         UIView *itemView = [self intitializeItemViewForItem:section.headerItem section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
-        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
+        [self.stackView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==_stackView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,itemView)]];
+        
         [insertedViews addObject:itemView];
         startIndex++;
     }
     [section.items enumerateObjectsUsingBlock:^(INSStackViewFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *itemView = [self intitializeItemViewForItem:obj section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
-        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
+        [self.stackView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==_stackView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,itemView)]];
+        
         [insertedViews addObject:itemView];
         startIndex++;
     }];
     if (section.footerItem) {
         UIView *itemView = [self intitializeItemViewForItem:section.footerItem section:section];
         [self.stackView insertArrangedSubview:itemView atIndex:startIndex];
-        [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
+        [self.stackView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==_stackView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,itemView)]];
+        
         [insertedViews addObject:itemView];
     }
     return [insertedViews copy];
 }
 
+#pragma mark - Private item initialization and configuration
+
 - (void)intitializeAndAddItemViewForItem:(INSStackViewFormItem *)item section:(INSStackViewFormSection *)section {
     UIView *itemView = [self intitializeItemViewForItem:item section:section];
     [self.stackView addArrangedSubview:itemView];
-    [itemView.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor].active = YES;
+    
+    [self.stackView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==_stackView)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_stackView,itemView)]];
 }
 
 - (UIView *)intitializeItemViewForItem:(INSStackViewFormItem *)item section:(INSStackViewFormSection *)section {
@@ -347,7 +372,7 @@
 - (void)configureItemView:(UIView *)itemView forItem:(INSStackViewFormItem *)item section:(INSStackViewFormSection *)section {
     
     if (item.height) {
-        [itemView.heightAnchor constraintEqualToConstant:[item.height doubleValue]].active = YES;
+        [itemView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[itemView(height)]" options:0 metrics:@{@"height":item.height} views:NSDictionaryOfVariableBindings(itemView)]];
     }
     
     if ([itemView isKindOfClass:[INSStackViewFormView class]]) {
@@ -385,6 +410,8 @@
     }
 }
 
+#pragma mark - Validation
+
 - (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages {
     NSMutableArray *errors = [NSMutableArray array];
     __block BOOL isValid = YES;
@@ -407,6 +434,4 @@
     *errorMessages = [errors copy];
     return isValid;
 }
-
-
 @end

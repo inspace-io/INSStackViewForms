@@ -33,6 +33,9 @@
 
 @property (nonatomic, strong, readonly) NSArray <INSStackViewFormSection *> *sections;
 
++ (Class)scrollViewClass;
++ (Class)stackViewClass;
+
 - (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections;
 - (void)reloadData;
 - (void)refreshViews;

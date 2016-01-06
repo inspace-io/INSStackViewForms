@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641F678A1C3D8DE8006752DE /* INSOAStackViewFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */; };
 		64788D9B1C39A07D00B4B872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788D9A1C39A07D00B4B872 /* main.m */; };
 		64788D9E1C39A07D00B4B872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788D9D1C39A07D00B4B872 /* AppDelegate.m */; };
 		64788DA11C39A07D00B4B872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788DA01C39A07D00B4B872 /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		3EF08A0B4448144B27FFB639 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60250873DCD08307D518308F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		641F67881C3D8DE8006752DE /* INSOAStackViewFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INSOAStackViewFormViewController.h; path = ../../INSStackViewForms/OAStackView/INSOAStackViewFormViewController.h; sourceTree = "<group>"; };
+		641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INSOAStackViewFormViewController.m; path = ../../INSStackViewForms/OAStackView/INSOAStackViewFormViewController.m; sourceTree = "<group>"; };
 		64788D961C39A07D00B4B872 /* INSStackViewForms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INSStackViewForms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64788D9A1C39A07D00B4B872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64788D9C1C39A07D00B4B872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 		64788DB01C39A08300B4B872 /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
+				641F67881C3D8DE8006752DE /* INSOAStackViewFormViewController.h */,
+				641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */,
 				64788DD01C39D9C700B4B872 /* INSStackViewFormItem.h */,
 				64788DD11C39D9C700B4B872 /* INSStackViewFormItem.m */,
 				64788DD21C39D9C700B4B872 /* INSStackViewFormSection.h */,
@@ -297,6 +302,7 @@
 				64788DDA1C39D9C700B4B872 /* INSStackViewFormSection.m in Sources */,
 				64788DC01C39B4A900B4B872 /* CustomView.m in Sources */,
 				64788DD91C39D9C700B4B872 /* INSStackViewFormItem.m in Sources */,
+				641F678A1C3D8DE8006752DE /* INSOAStackViewFormViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = INSStackViewForms/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.inspace.INSStackViewForms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,6 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = INSStackViewForms/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.inspace.INSStackViewForms;
 				PRODUCT_NAME = "$(TARGET_NAME)";

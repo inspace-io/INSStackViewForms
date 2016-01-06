@@ -1,10 +1,22 @@
 PODS:
   - INSNibLoading (1.0.0)
+  - OAStackView (0.2.0)
 
 DEPENDENCIES:
   - INSNibLoading
+  - OAStackView (from `https://github.com/oarrabi/OAStackView.git`)
+
+EXTERNAL SOURCES:
+  OAStackView:
+    :git: https://github.com/oarrabi/OAStackView.git
+
+CHECKOUT OPTIONS:
+  OAStackView:
+    :commit: b4f37c2cec48644173003cf26ed2511429647fbb
+    :git: https://github.com/oarrabi/OAStackView.git
 
 SPEC CHECKSUMS:
   INSNibLoading: 8fe16319badd041a0aa68dfed080f2157ac4c8ce
+  OAStackView: a05adfec3669a5187b968a8c0a2690ae517271b6
 
 COCOAPODS: 0.39.0

@@ -44,6 +44,8 @@
 - (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections {
     NSMutableArray *sections = [super initialCollectionSections];
     
+    __weak typeof(self) weakSelf = self;
+    
     [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
         
         [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
@@ -98,7 +100,29 @@
             builder.itemClass = [ActionView class];
             builder.height = @50;
             builder.configurationBlock = ^(ActionView *view) {
-                view.titleLabel.text = @"Click Me to show details!";
+                view.titleLabel.text = @"Click Me to remove section!";
+            };
+            
+            builder.actionBlock = ^(INSStackViewFormView *view) {
+                NSArray *errors = nil;
+                if ([weakSelf validateDataItems:&errors]) {
+                    [weakSelf removeSection:[weakSelf.sections firstObject] animated:YES completion:nil];
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[errors firstObject] preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                    }]];
+                    [weakSelf presentViewController:alert animated:YES completion:nil];
+                }
+                
+            };
+            
+            builder.validationBlock = ^BOOL(__kindof UIView *view, INSStackViewFormItem *item, NSString **errorMessage) {
+                if (weakSelf.sections.count <= 1) {
+                    *errorMessage = @"Please don't delete me !!!";
+                    return NO;
+                }
+                return YES;
             };
         }];
         
