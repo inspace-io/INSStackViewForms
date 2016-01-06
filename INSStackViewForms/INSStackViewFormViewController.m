@@ -207,6 +207,7 @@
         
         [UIView animateWithDuration:0.25 animations:^{
             viewForItem.hidden = YES;
+            viewForItem.alpha = 0.0;
         } completion:^(BOOL finished) {
             [self removeItem:item fromSection:section];
             if (completion) {
@@ -285,6 +286,7 @@
         [UIView animateWithDuration:0.25 animations:^{
             for (UIView *view in subviews) {
                 view.hidden = YES;
+                view.alpha = 0.0;
             }
         } completion:^(BOOL finished) {
             [self removeSection:section];
