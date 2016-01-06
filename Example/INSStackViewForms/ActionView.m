@@ -14,6 +14,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self ins_loadContentsFromNib];
+        
+        UIView *selectedView = [[UIView alloc] initWithFrame:CGRectZero];
+        selectedView.backgroundColor = [UIColor darkGrayColor];
+        self.selectedBackgroundView = selectedView;
     }
     return self;
 }

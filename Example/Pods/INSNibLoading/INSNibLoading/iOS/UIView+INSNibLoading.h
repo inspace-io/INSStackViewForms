@@ -42,6 +42,9 @@
 
 // Convenience method, loads a nib named after the class name.
 - (void)ins_loadContentsFromNib;
+
+// View where all content from nib will be added.
+- (UIView *)ins_contentViewForNib;
 @end
 
 // Convenience NSView subclass.

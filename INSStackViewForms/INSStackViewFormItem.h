@@ -34,6 +34,7 @@ typedef BOOL(^INSStackViewFormItemValidationBlock)(__kindof UIView *view, INSSta
 @property (nonatomic, strong) Class itemClass;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) id value;
 @property (nonatomic, assign) BOOL userInteractionEnabled;
 @property (nonatomic, copy) NSNumber *height;

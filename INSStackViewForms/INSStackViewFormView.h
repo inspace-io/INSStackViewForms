@@ -27,9 +27,20 @@
 #import "INSStackViewFormSection.h"
 #import "INSStackViewFormItem.h"
 
+typedef NS_ENUM(NSInteger, INSStackViewFormViewAccessoryType) {
+    INSStackViewFormViewAccessoryNone,    // don't show any accessory view
+    INSStackViewFormViewAccessoryDisclosureIndicator
+};
+
 @interface INSStackViewFormView : UIControl
 @property (nonatomic, strong, readonly) INSStackViewFormSection *section;
 @property (nonatomic, strong, readonly) INSStackViewFormItem *item;
+
+@property (nonatomic, readonly, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *accessoryView;
+@property (nonatomic, assign) INSStackViewFormViewAccessoryType accesoryType;
+
+@property (nonatomic, strong) UIView *selectedBackgroundView;
 
 @property (nonatomic, assign) IBInspectable CGFloat delimiterLineHeight;
 
@@ -50,4 +61,7 @@
 
 - (void)hideAllDelimiters;
 - (void)configure;
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated;
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		641F678A1C3D8DE8006752DE /* INSOAStackViewFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */; };
+		641F679F1C3DAE14006752DE /* INSStackViewForms.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 641F679E1C3DAE14006752DE /* INSStackViewForms.bundle */; };
+		641F67A21C3DB0E5006752DE /* INSStackViewLabelElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 641F67A11C3DB0E5006752DE /* INSStackViewLabelElement.m */; };
 		64788D9B1C39A07D00B4B872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788D9A1C39A07D00B4B872 /* main.m */; };
 		64788D9E1C39A07D00B4B872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788D9D1C39A07D00B4B872 /* AppDelegate.m */; };
 		64788DA11C39A07D00B4B872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788DA01C39A07D00B4B872 /* ViewController.m */; };
@@ -33,6 +35,11 @@
 		60250873DCD08307D518308F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		641F67881C3D8DE8006752DE /* INSOAStackViewFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INSOAStackViewFormViewController.h; path = ../../INSStackViewForms/OAStackView/INSOAStackViewFormViewController.h; sourceTree = "<group>"; };
 		641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INSOAStackViewFormViewController.m; path = ../../INSStackViewForms/OAStackView/INSOAStackViewFormViewController.m; sourceTree = "<group>"; };
+		641F67961C3DACE6006752DE /* forwardarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forwardarrow@2x.png"; path = "../../XLForm-master-2/XLForm/XLForm.bundle/forwardarrow@2x.png"; sourceTree = "<group>"; };
+		641F67981C3DAD1E006752DE /* forwardarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forwardarrow@2x.png"; path = "../Resources/forwardarrow@2x.png"; sourceTree = "<group>"; };
+		641F679E1C3DAE14006752DE /* INSStackViewForms.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = INSStackViewForms.bundle; path = ../../INSStackViewForms/INSStackViewForms.bundle; sourceTree = "<group>"; };
+		641F67A01C3DB0E5006752DE /* INSStackViewLabelElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSStackViewLabelElement.h; sourceTree = "<group>"; };
+		641F67A11C3DB0E5006752DE /* INSStackViewLabelElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSStackViewLabelElement.m; sourceTree = "<group>"; };
 		64788D961C39A07D00B4B872 /* INSStackViewForms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INSStackViewForms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64788D9A1C39A07D00B4B872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64788D9C1C39A07D00B4B872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -90,9 +97,21 @@
 		3B122F3DDB050EBE2C0A234E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				641F67981C3DAD1E006752DE /* forwardarrow@2x.png */,
+				641F67961C3DACE6006752DE /* forwardarrow@2x.png */,
 				DBCC4314E2A9F6F978E8BB22 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		641F678B1C3D9C76006752DE /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				641F67A01C3DB0E5006752DE /* INSStackViewLabelElement.h */,
+				641F67A11C3DB0E5006752DE /* INSStackViewLabelElement.m */,
+			);
+			name = Elements;
+			path = ../../INSStackViewForms/Elements;
 			sourceTree = "<group>";
 		};
 		64788D8D1C39A07D00B4B872 = {
@@ -137,6 +156,7 @@
 				64788DCB1C39CA3600B4B872 /* ActionView.h */,
 				64788DCE1C39CA4100B4B872 /* ActionView.xib */,
 				64788DCC1C39CA3600B4B872 /* ActionView.m */,
+				641F679E1C3DAE14006752DE /* INSStackViewForms.bundle */,
 			);
 			path = INSStackViewForms;
 			sourceTree = "<group>";
@@ -152,6 +172,7 @@
 		64788DB01C39A08300B4B872 /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
+				641F678B1C3D9C76006752DE /* Elements */,
 				641F67881C3D8DE8006752DE /* INSOAStackViewFormViewController.h */,
 				641F67891C3D8DE8006752DE /* INSOAStackViewFormViewController.m */,
 				64788DD01C39D9C700B4B872 /* INSStackViewFormItem.h */,
@@ -231,6 +252,7 @@
 				64788DA91C39A07D00B4B872 /* LaunchScreen.storyboard in Resources */,
 				64788DA61C39A07D00B4B872 /* Assets.xcassets in Resources */,
 				64788DCA1C39C91D00B4B872 /* SectionHeaderView.xib in Resources */,
+				641F679F1C3DAE14006752DE /* INSStackViewForms.bundle in Resources */,
 				64788DC51C39C25900B4B872 /* HideView.xib in Resources */,
 				64788DA41C39A07D00B4B872 /* Main.storyboard in Resources */,
 			);
@@ -299,6 +321,7 @@
 				64788DDC1C39D9C700B4B872 /* INSStackViewFormViewController.m in Sources */,
 				64788DC81C39C91300B4B872 /* SectionHeaderView.m in Sources */,
 				64788D9B1C39A07D00B4B872 /* main.m in Sources */,
+				641F67A21C3DB0E5006752DE /* INSStackViewLabelElement.m in Sources */,
 				64788DDA1C39D9C700B4B872 /* INSStackViewFormSection.m in Sources */,
 				64788DC01C39B4A900B4B872 /* CustomView.m in Sources */,
 				64788DD91C39D9C700B4B872 /* INSStackViewFormItem.m in Sources */,

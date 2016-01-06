@@ -12,6 +12,7 @@
 #import "HideView.h"
 #import "SectionHeaderView.h"
 #import "ActionView.h"
+#import "INSStackViewLabelElement.h"
 
 @interface ViewController ()
 
@@ -80,6 +81,21 @@
         sectionBuilder.showItemSeparators = YES;
         sectionBuilder.separatorInset = UIEdgeInsetsMake(0, 12, 0, 0);
         
+        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+            builder.itemClass = [INSStackViewLabelElement class];
+            builder.title = @"TEST";
+            builder.subtitle = @"SUBTITLE";
+            builder.height = @50;
+            builder.actionBlock = ^(INSStackViewFormView *view) {
+                
+            };
+        }];
+    }]];
+    
+    [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
+        sectionBuilder.showItemSeparators = YES;
+        sectionBuilder.separatorInset = UIEdgeInsetsMake(0, 12, 0, 0);
+        
         [sectionBuilder addHeaderWithBuilder:^(INSStackViewFormItem *builder) {
             builder.itemClass = [SectionHeaderView class];
             builder.height = @60;
@@ -92,6 +108,7 @@
             builder.itemClass = [ActionView class];
             builder.height = @50;
             builder.configurationBlock = ^(ActionView *view) {
+                view.accesoryType = INSStackViewFormViewAccessoryNone;
                 view.titleLabel.text = @"Click Me to show details!";
             };
         }];
@@ -100,6 +117,7 @@
             builder.itemClass = [ActionView class];
             builder.height = @50;
             builder.configurationBlock = ^(ActionView *view) {
+                view.accesoryType = INSStackViewFormViewAccessoryNone;
                 view.titleLabel.text = @"Click Me to remove section!";
             };
             
