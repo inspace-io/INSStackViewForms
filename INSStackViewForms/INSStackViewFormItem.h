@@ -25,7 +25,10 @@
 
 @import UIKit;
 
+@class INSStackViewFormItem;
+
 typedef void(^INSStackViewFormItemBlock)(__kindof UIView *item);
+typedef BOOL(^INSStackViewFormItemValidationBlock)(__kindof UIView *view, INSStackViewFormItem *item, NSString **errorMessage);
 
 @interface INSStackViewFormItem : NSObject
 @property (nonatomic, strong) Class itemClass;
@@ -37,4 +40,6 @@ typedef void(^INSStackViewFormItemBlock)(__kindof UIView *item);
 
 @property (nonatomic, copy) INSStackViewFormItemBlock configurationBlock;
 @property (nonatomic, copy) INSStackViewFormItemBlock actionBlock;
+@property (nonatomic, copy) INSStackViewFormItemValidationBlock validationBlock;
+
 @end

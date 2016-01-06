@@ -35,11 +35,6 @@
 
 @implementation INSStackViewFormViewController
 
-- (void)setShowItemSeparators:(BOOL)showItemSeparators {
-    _showItemSeparators = showItemSeparators;
-    [self reloadViewsOnly];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -99,7 +94,7 @@
     [self.stackView layoutIfNeeded];
 }
 
-- (void)reloadViewsOnly {
+- (void)refreshViews {
     [self.sections enumerateObjectsUsingBlock:^(INSStackViewFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         
         __block NSInteger index = [self startIndexForSection:section];
@@ -118,6 +113,24 @@
     }];
     
     [self.stackView layoutIfNeeded];
+}
+
+- (INSStackViewFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackViewFormSection *)section {
+    for (INSStackViewFormItem *item in section.items) {
+        if ([item.identifier isEqualToString:identifier]) {
+            return item;
+        }
+    }
+    return nil;
+}
+
+- (INSStackViewFormSection *)sectionWithIdentifier:(NSString *)identifier {
+    for (INSStackViewFormSection *section in self.sections) {
+        if ([section.identifier isEqualToString:identifier]) {
+            return section;
+        }
+    }
+    return nil;
 }
 
 - (NSUInteger)startIndexForSection:(INSStackViewFormSection *)searchingSection {
@@ -344,23 +357,55 @@
         [formView configure];
         [formView hideAllDelimiters];
         
-        if (self.showItemSeparators) {
+        if (section.showItemSeparators) {
+            formView.topDelimiterInset = section.separatorInset;
             NSUInteger index = [section.items indexOfObject:item];
+            formView.showTopDelimiter = NO;
+            formView.showBottomDelimiter = NO;
+            
             if (section.items.count == 1) {
+                formView.topDelimiterInset = UIEdgeInsetsZero;
                 formView.showTopDelimiter = YES;
                 formView.showBottomDelimiter = YES;
             } else if (index == section.items.count - 1) {
                 formView.showTopDelimiter = YES;
                 formView.showBottomDelimiter = YES;
+            } else if (index == 0) {
+                formView.showTopDelimiter = YES;
+                formView.topDelimiterInset = UIEdgeInsetsZero;
             } else {
                 formView.showTopDelimiter = YES;
             }
+
         }
     }
     
     if (item.configurationBlock) {
         item.configurationBlock(itemView);
     }
+}
+
+- (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages {
+    NSMutableArray *errors = [NSMutableArray array];
+    __block BOOL isValid = YES;
+    
+    [self.sections enumerateObjectsUsingBlock:^(INSStackViewFormSection *section, NSUInteger idx, BOOL * _Nonnull stop) {
+        [section.items enumerateObjectsUsingBlock:^(INSStackViewFormItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (item.validationBlock) {
+                NSString *errorMessage = nil;
+                BOOL isItemValid = item.validationBlock([self viewForItem:item inSection:section],item,&errorMessage);
+                if (!isItemValid) {
+                    NSAssert(errorMessage != nil, @"If item is not valid, you must provide error message");
+                    [errors addObject:errorMessage];
+                    isValid = NO;
+                }
+            }
+        }];
+        
+    }];
+    
+    *errorMessages = [errors copy];
+    return isValid;
 }
 
 

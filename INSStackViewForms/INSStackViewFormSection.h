@@ -26,17 +26,21 @@
 #import "INSStackViewFormItem.h"
 
 @interface INSStackViewFormSection : NSObject
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSNumber *headerHeight;
 @property (nonatomic, copy) NSNumber *footerHeight;
 
 @property (nonatomic, strong) INSStackViewFormItem *headerItem;
 @property (nonatomic, strong) INSStackViewFormItem *footerItem;
 
+@property (nonatomic, assign) BOOL showItemSeparators;
+@property (nonatomic, assign) UIEdgeInsets separatorInset;
+
 @property (nonatomic, readonly) NSArray <INSStackViewFormItem *> *items;
 
-- (void)addFooterWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
-- (void)addHeaderWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
-- (void)addItemWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
+- (INSStackViewFormItem *)addFooterWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
+- (INSStackViewFormItem *)addHeaderWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
+- (INSStackViewFormItem *)addItemWithBuilder:(void(^)(INSStackViewFormItem *builder))block;
 
 - (void)addItem:(INSStackViewFormItem *)item;
 - (void)insertItem:(INSStackViewFormItem *)item atIndex:(NSUInteger)index;

@@ -40,6 +40,9 @@
 @property (nonatomic, strong) IBInspectable UIColor *leftDelimiterColor;
 @property (nonatomic, strong) IBInspectable UIColor *rightDelimiterColor;
 
+@property (nonatomic, assign) UIEdgeInsets topDelimiterInset;
+@property (nonatomic, assign) UIEdgeInsets bottomDelimiterInset;
+
 @property (nonatomic, assign) IBInspectable BOOL showTopDelimiter;
 @property (nonatomic, assign) IBInspectable BOOL showBottomDelimiter;
 @property (nonatomic, assign) IBInspectable BOOL showLeftDelimiter;

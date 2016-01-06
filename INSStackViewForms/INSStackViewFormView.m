@@ -84,8 +84,8 @@
 }
 
 - (void)updateDelimitersFrame {
-    self.topDelimiter.frame = (CGRect){.size = CGSizeMake(self.bounds.size.width, _delimiterLineHeight)};
-    self.bottomDelimiter.frame = (CGRect){ .origin = CGPointMake(0, self.bounds.size.height-_delimiterLineHeight), .size = CGSizeMake(self.bounds.size.width, _delimiterLineHeight)};
+    self.topDelimiter.frame = (CGRect){.origin = CGPointMake(self.topDelimiterInset.left, 0), .size = CGSizeMake(self.bounds.size.width - self.topDelimiterInset.left - self.topDelimiterInset.right, _delimiterLineHeight)};
+    self.bottomDelimiter.frame = (CGRect){.origin = CGPointMake(self.bottomDelimiterInset.left, self.bounds.size.height-_delimiterLineHeight), .size = CGSizeMake(self.bounds.size.width - self.bottomDelimiterInset.left - self.bottomDelimiterInset.right, _delimiterLineHeight)};
     self.rightDelimiter.frame = (CGRect){ .origin = CGPointMake(self.bounds.size.width-_delimiterLineHeight, 0), .size = CGSizeMake(_delimiterLineHeight, self.bounds.size.height)};
     self.leftDelimiter.frame = (CGRect){  .size = CGSizeMake(_delimiterLineHeight, self.bounds.size.height)};
     
@@ -98,7 +98,7 @@
 - (void)setupDefaultValues {
     _delimiterLineHeight = 0.5;
     
-    _topDelimiter = [[UIView alloc] initWithFrame:(CGRect){.size = CGSizeMake(self.bounds.size.width, _delimiterLineHeight)}];
+    _topDelimiter = [[UIView alloc] initWithFrame:(CGRect){.origin = CGPointMake(self.topDelimiterInset.left, 0), .size = CGSizeMake(self.bounds.size.width - self.topDelimiterInset.left - self.topDelimiterInset.right, _delimiterLineHeight)}];
     _topDelimiter.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     _topDelimiter.translatesAutoresizingMaskIntoConstraints = YES;
     _topDelimiter.backgroundColor = self.topDelimiterColor;
@@ -106,7 +106,7 @@
     [self addSubview:_topDelimiter];
     [self bringSubviewToFront:_topDelimiter];
     
-    _bottomDelimiter = [[UIView alloc] initWithFrame:(CGRect){ .origin = CGPointMake(0, self.bounds.size.height-_delimiterLineHeight), .size = CGSizeMake(self.bounds.size.width, _delimiterLineHeight)}];
+    _bottomDelimiter = [[UIView alloc] initWithFrame:(CGRect){.origin = CGPointMake(self.bottomDelimiterInset.left, self.bounds.size.height-_delimiterLineHeight), .size = CGSizeMake(self.bounds.size.width - self.bottomDelimiterInset.left - self.bottomDelimiterInset.right, _delimiterLineHeight)}];
     _bottomDelimiter.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     _bottomDelimiter.translatesAutoresizingMaskIntoConstraints = YES;
     _bottomDelimiter.backgroundColor = self.bottomDelimiterColor;

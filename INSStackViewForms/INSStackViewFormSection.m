@@ -48,20 +48,23 @@
     return self;
 }
 
-- (void)addFooterWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
+- (INSStackViewFormItem *)addFooterWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
     INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
     block(builder);
     self.footerItem = builder;
+    return builder;
 }
-- (void)addHeaderWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
+- (INSStackViewFormItem *)addHeaderWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
     INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
     block(builder);
     self.headerItem = builder;
+    return builder;
 }
-- (void)addItemWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
+- (INSStackViewFormItem *)addItemWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
     INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
     block(builder);
     [self.sectionItems addObject:builder];
+    return builder;
 }
 
 - (void)addItem:(INSStackViewFormItem *)item {

@@ -31,12 +31,14 @@
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong, readonly) UIStackView *stackView;
 
-@property (nonatomic, assign) BOOL showItemSeparators;
 @property (nonatomic, strong, readonly) NSArray <INSStackViewFormSection *> *sections;
 
 - (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections;
 - (void)reloadData;
-- (void)reloadViewsOnly;
+- (void)refreshViews;
+
+- (INSStackViewFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackViewFormSection *)section;
+- (INSStackViewFormSection *)sectionWithIdentifier:(NSString *)identifier;
 
 - (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section;
 - (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section;
@@ -52,5 +54,7 @@
 
 - (NSArray <__kindof UIView *> *)addSection:(INSStackViewFormSection *)section;
 - (NSArray <__kindof UIView *> *)insertSection:(INSStackViewFormSection *)section atIndex:(NSUInteger)index;
+
+- (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages;
 
 @end

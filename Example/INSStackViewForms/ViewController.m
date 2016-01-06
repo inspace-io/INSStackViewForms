@@ -21,10 +21,8 @@
 
 - (void)viewDidLoad {
     
-    
     [super viewDidLoad];
-    
-    self.showItemSeparators = YES;
+
     // Do any additional setup after loading the view, typically from a nib.
     
     INSStackViewFormItem *item = [[INSStackViewFormItem alloc] init];
@@ -77,12 +75,22 @@
     }]];
     
     [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
+        sectionBuilder.showItemSeparators = YES;
+        sectionBuilder.separatorInset = UIEdgeInsetsMake(0, 12, 0, 0);
         
         [sectionBuilder addHeaderWithBuilder:^(INSStackViewFormItem *builder) {
             builder.itemClass = [SectionHeaderView class];
             builder.height = @60;
             builder.configurationBlock = ^(SectionHeaderView *view) {
                 view.titleLabel.text = @"SECTION HEADER";
+            };
+        }];
+        
+        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+            builder.itemClass = [ActionView class];
+            builder.height = @50;
+            builder.configurationBlock = ^(ActionView *view) {
+                view.titleLabel.text = @"Click Me to show details!";
             };
         }];
         
