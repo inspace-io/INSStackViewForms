@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		641F678A1C3D8DE8006752DE /* INSOAStackFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 641F67891C3D8DE8006752DE /* INSOAStackFormView.m */; };
 		641F679F1C3DAE14006752DE /* INSStackViewForms.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 641F679E1C3DAE14006752DE /* INSStackViewForms.bundle */; };
 		641F67A21C3DB0E5006752DE /* INSStackFormViewLabelElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 641F67A11C3DB0E5006752DE /* INSStackFormViewLabelElement.m */; };
 		64788D9B1C39A07D00B4B872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788D9A1C39A07D00B4B872 /* main.m */; };
@@ -34,8 +33,6 @@
 /* Begin PBXFileReference section */
 		3EF08A0B4448144B27FFB639 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60250873DCD08307D518308F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		641F67881C3D8DE8006752DE /* INSOAStackFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INSOAStackFormView.h; path = ../../INSStackViewForms/OAStackView/INSOAStackFormView.h; sourceTree = "<group>"; };
-		641F67891C3D8DE8006752DE /* INSOAStackFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INSOAStackFormView.m; path = ../../INSStackViewForms/OAStackView/INSOAStackFormView.m; sourceTree = "<group>"; };
 		641F67961C3DACE6006752DE /* forwardarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forwardarrow@2x.png"; path = "../../XLForm-master-2/XLForm/XLForm.bundle/forwardarrow@2x.png"; sourceTree = "<group>"; };
 		641F67981C3DAD1E006752DE /* forwardarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forwardarrow@2x.png"; path = "../Resources/forwardarrow@2x.png"; sourceTree = "<group>"; };
 		641F679E1C3DAE14006752DE /* INSStackViewForms.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = INSStackViewForms.bundle; path = ../../INSStackViewForms/INSStackViewForms.bundle; sourceTree = "<group>"; };
@@ -178,8 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				641F678B1C3D9C76006752DE /* Elements */,
-				641F67881C3D8DE8006752DE /* INSOAStackFormView.h */,
-				641F67891C3D8DE8006752DE /* INSOAStackFormView.m */,
 				64788DD01C39D9C700B4B872 /* INSStackFormItem.h */,
 				64788DD11C39D9C700B4B872 /* INSStackFormItem.m */,
 				64788DD21C39D9C700B4B872 /* INSStackFormSection.h */,
@@ -331,7 +326,6 @@
 				64788DDA1C39D9C700B4B872 /* INSStackFormSection.m in Sources */,
 				64788DC01C39B4A900B4B872 /* CustomView.m in Sources */,
 				64788DD91C39D9C700B4B872 /* INSStackFormItem.m in Sources */,
-				641F678A1C3D8DE8006752DE /* INSOAStackFormView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

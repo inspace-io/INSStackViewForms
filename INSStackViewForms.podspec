@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'INSStackViewForms'
-  s.version  = '1.0.0'
+  s.version  = '1.1.0'
   s.license  = 'MIT'
   s.summary  = 'INSStackViewForms - iOS library to create dynamic UIStackView forms'
   s.homepage = 'http://inspace.io'
@@ -10,13 +10,15 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec "Core" do |sp| 
-    sp.source_files = 'INSStackViewForms/*.{h,m}'
+    sp.source_files = 'INSStackViewForms/**/*.{h,m}'
+    sp.resource = 'INSStackViewForms/INSStackViewForms.bundle'
   end
 
   s.subspec "OAStackView" do |sp|
     sp.source_files = "INSStackViewForms/**/*.{h,m}"
     sp.dependency 'OAStackView'
     sp.platform = :ios, '8.0'
+    sp.resource = 'INSStackViewForms/INSStackViewForms.bundle'
   end
 
   s.platform = :ios, '9.0'

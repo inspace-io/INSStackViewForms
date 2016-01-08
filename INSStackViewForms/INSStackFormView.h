@@ -27,22 +27,29 @@
 @import UIKit;
 #import "INSStackFormSection.h"
 
-@class INSStackViewFormView;
+@class INSStackFormView;
 
-@protocol INSStackViewFormViewControllerDateSource <NSObject>
-//- (NSArray <INSStackFormSection *> *)stackViewFormView:(INSStackViewFormView *)stackViewFormView
+@protocol INSStackViewFormViewDateSource <NSObject>
+- (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView;
 @end
 
-@interface INSStackFormView : UIViewController
-@property (nonatomic, strong, readonly) UIScrollView *scrollView;
-@property (nonatomic, strong, readonly) UIStackView *stackView;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_0 && __has_include("OAStackView.h") || __has_include(<OAStackView/OAStackView.h>)
+
+#if __has_include(<OAStackView/OAStackView.h>)
+    #import <OAStackView/OAStackView.h>
+#else
+    #import "OAStackView.h"
+#endif
+
+@interface INSStackFormView : OAStackView
+#else
+@interface INSStackFormView : UIStackView
+#endif
 
 @property (nonatomic, strong, readonly) NSArray <INSStackFormSection *> *sections;
 
-+ (Class)scrollViewClass;
-+ (Class)stackViewClass;
+@property (nonatomic, weak) id <INSStackViewFormViewDateSource> dataSource;
 
-- (NSMutableArray <INSStackFormSection *> *)initialCollectionSections;
 - (void)reloadData;
 - (void)refreshViews;
 

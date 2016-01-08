@@ -16,6 +16,10 @@
 
 @implementation INSStackFormViewTextFieldElement
 
+- (void)dealloc {
+    [self.textLabel removeObserver:self forKeyPath:@"text"];
+}
+
 - (void)setAccessoryView:(UIView *)accessoryView {
     [super setAccessoryView:accessoryView];
     [self.contentView setNeedsUpdateConstraints];

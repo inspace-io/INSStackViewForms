@@ -7,101 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		001D506E87A5B7097BD094313297C453 /* OAStackViewAlignmentStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 852DBCCD50FE2F87C50ECB2C6CD4A0D9 /* OAStackViewAlignmentStrategy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B842171AC4FC59E806159A6A263898E /* _OALayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AA4AD84DD63A991DC9B63F3C224353 /* _OALayoutGuide.m */; };
-		0CED10BB0A76F55553ADE796D13601A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		165AD11E9D34B83AC9262E2A78BED040 /* OAStackView+Hiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A02BA19C7F7A2C6D10841FC0D89B86 /* OAStackView+Hiding.m */; };
-		1A07109F373DDCBE7D8B69B88599BEE7 /* UIView+INSNibLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = 77C6C59612B04F580382ED00F42EA0C0 /* UIView+INSNibLoading.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2EBE97DEFD6D90D257553945B2A9657F /* OAStackViewAlignmentStrategyBaseline.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C99D18CBF5E14909D4928997403C53B /* OAStackViewAlignmentStrategyBaseline.m */; };
+		1A07109F373DDCBE7D8B69B88599BEE7 /* UIView+INSNibLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = F314B094BF714E6337A054F54BA85971 /* UIView+INSNibLoading.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33021793DC990745E1AF6054336BBD4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		33407DA99B39B7CA387D002B77CDBB74 /* _OALayoutGuide.h in Headers */ = {isa = PBXBuildFile; fileRef = 681765ED21E1F2F8FD591342FDE4261F /* _OALayoutGuide.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		33D64F339CF819A4AE3A74A0AD2BDF9B /* OAStackView+Hiding.h in Headers */ = {isa = PBXBuildFile; fileRef = ABBDAAED92B3856C6DA0FA78B9263D1D /* OAStackView+Hiding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34997BA365E320B2BEC7EFA2BD381AB2 /* OAStackView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5341D3300AC62D1252C71AB6388168A /* OAStackView-dummy.m */; };
-		357028869021D2CF599B2A61B82072E0 /* OAStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DE1989093D9975D1327F2E1FB5E861 /* OAStackView.m */; };
-		3D977C720AB6528F46D1B882C456DF05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		4988AD373FEAF0B3D3287075576289EB /* OAStackView+Constraint.h in Headers */ = {isa = PBXBuildFile; fileRef = FD7A057E525908B45F1EA9F8176E01DC /* OAStackView+Constraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		533B20F8D3529097D73E79A0E5A8C842 /* OAStackViewDistributionStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1403060D1DCD84E9546D5ACA5CC535 /* OAStackViewDistributionStrategy.m */; };
-		543F919A9263D75AD09FD35D4119FBEF /* OAStackViewAlignmentStrategyBaseline.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A0A6711A946E76B4DF8AD695181090 /* OAStackViewAlignmentStrategyBaseline.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5DA9D80A3BC3AA013585632EE9C13421 /* OAStackView+Traversal.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C3E79032122238C8C873465612A765 /* OAStackView+Traversal.m */; };
-		68F5344C5ACDF2D38F1E3C08F5CF49FE /* OAStackView+Traversal.h in Headers */ = {isa = PBXBuildFile; fileRef = AB214A37ADCE5EC62D6813484E68168C /* OAStackView+Traversal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E098B1C7076A5C76F97172007C95272 /* OAStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = BDAD57DBF1C622C4DDCF898F25CECEA7 /* OAStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8FA5498B976319A4DB8A58B9E68F09EF /* OATransformLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BD4312DECD75F1E17764F6EA7C9446 /* OATransformLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9AD30134017A03966BED6AAC705C7C92 /* OAStackView+Constraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A089B8DB3ADF467C55CF6A90D476768 /* OAStackView+Constraint.m */; };
-		B0F0629191E9E620D642EF738E9B3997 /* UIView+INSNibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 3654CBC7C745B87221F35DD9962B7ABF /* UIView+INSNibLoading.m */; };
-		C7A32D981BBC0531EEA69A99E76567FA /* INSNibLoading-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CB619635DA3B30BE3F6C9CC262B67 /* INSNibLoading-dummy.m */; };
-		CBB1612BD3819230D648B53F8DDE88AE /* OAStackViewAlignmentStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FA8668171141FD6D1AEC5E57C4386 /* OAStackViewAlignmentStrategy.m */; };
-		D34DAB0BC3E4F72E445F95CDCBE99646 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
-		E98B259CE519A4FBE933F01189D4402D /* OATransformLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E68047709FE5CD0B8A288D16028544 /* OATransformLayer.m */; };
-		F6B4D403FAF6FD5DDE3AC036A520EB0C /* OAStackViewDistributionStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F54B8CFAEC9F9E2DD1A0B9C030C3742 /* OAStackViewDistributionStrategy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59DF7D9100E1203F3159CB874D87A8F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		A06B18F8C6DC75C4C8F0168EC998B1D5 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
+		B0F0629191E9E620D642EF738E9B3997 /* UIView+INSNibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1EC5BDFF06A8B661E6BCDEB9E7F0C7 /* UIView+INSNibLoading.m */; };
+		C7A32D981BBC0531EEA69A99E76567FA /* INSNibLoading-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DCA4EA619226B0B81FF402F8837060 /* INSNibLoading-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		43CE42173F7B3D18F95BCFB38A05C1F0 /* PBXContainerItemProxy */ = {
+		3F35C70EDE6927CD99DF6CE2B42AC702 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2C66E46D2FF14E95B5038DEAB7472293;
 			remoteInfo = INSNibLoading;
 		};
-		70424A7E2ABAAD02326505533511AA13 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2728D1720063D2C4734E38C851F43244;
-			remoteInfo = "OAStackView-OAStackView";
-		};
-		B241E68C2C3FF0E3C08B5723ECB455F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9331DC06026102A6939CE75D29D7684E;
-			remoteInfo = OAStackView;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06AA4AD84DD63A991DC9B63F3C224353 /* _OALayoutGuide.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _OALayoutGuide.m; path = Pod/Classes/_OALayoutGuide.m; sourceTree = "<group>"; };
+		092691EEABCC418AD6DCE374BEAA650E /* libINSNibLoading.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libINSNibLoading.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		093DFACECE20EBC24CAA52F23226EC58 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		1C99D18CBF5E14909D4928997403C53B /* OAStackViewAlignmentStrategyBaseline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OAStackViewAlignmentStrategyBaseline.m; path = Pod/Classes/OAStackViewAlignmentStrategyBaseline.m; sourceTree = "<group>"; };
-		1F54B8CFAEC9F9E2DD1A0B9C030C3742 /* OAStackViewDistributionStrategy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OAStackViewDistributionStrategy.h; path = Pod/Classes/OAStackViewDistributionStrategy.h; sourceTree = "<group>"; };
 		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OAStackView.xcconfig; sourceTree = "<group>"; };
-		2C17B4A5ED0617619ECECFAE7A6F173C /* OAStackView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OAStackView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FAE8E953BC9B888A01336522073181E /* OAStackView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OAStackView-prefix.pch"; sourceTree = "<group>"; };
-		3654CBC7C745B87221F35DD9962B7ABF /* UIView+INSNibLoading.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+INSNibLoading.m"; path = "INSNibLoading/iOS/UIView+INSNibLoading.m"; sourceTree = "<group>"; };
+		27DCA4EA619226B0B81FF402F8837060 /* INSNibLoading-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "INSNibLoading-dummy.m"; sourceTree = "<group>"; };
 		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		380A5AD1C49EB8404F315736F6939DD8 /* INSNibLoading-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "INSNibLoading-prefix.pch"; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		4B10ED8D0198E84C23513FCDE89E24EE /* INSNibLoading-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "INSNibLoading-prefix.pch"; sourceTree = "<group>"; };
-		4C40F7DC64F2AC77B29AA9DAF8E6745C /* libOAStackView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOAStackView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C4CB619635DA3B30BE3F6C9CC262B67 /* INSNibLoading-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "INSNibLoading-dummy.m"; sourceTree = "<group>"; };
 		4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		58DE1989093D9975D1327F2E1FB5E861 /* OAStackView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OAStackView.m; path = Pod/Classes/OAStackView.m; sourceTree = "<group>"; };
-		58E68047709FE5CD0B8A288D16028544 /* OATransformLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OATransformLayer.m; path = Pod/Classes/OATransformLayer.m; sourceTree = "<group>"; };
-		681765ED21E1F2F8FD591342FDE4261F /* _OALayoutGuide.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _OALayoutGuide.h; path = Pod/Classes/_OALayoutGuide.h; sourceTree = "<group>"; };
 		6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		6A9FA8668171141FD6D1AEC5E57C4386 /* OAStackViewAlignmentStrategy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OAStackViewAlignmentStrategy.m; path = Pod/Classes/OAStackViewAlignmentStrategy.m; sourceTree = "<group>"; };
-		77C6C59612B04F580382ED00F42EA0C0 /* UIView+INSNibLoading.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+INSNibLoading.h"; path = "INSNibLoading/iOS/UIView+INSNibLoading.h"; sourceTree = "<group>"; };
-		78A02BA19C7F7A2C6D10841FC0D89B86 /* OAStackView+Hiding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OAStackView+Hiding.m"; path = "Pod/Classes/OAStackView+Hiding.m"; sourceTree = "<group>"; };
-		7A089B8DB3ADF467C55CF6A90D476768 /* OAStackView+Constraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OAStackView+Constraint.m"; path = "Pod/Classes/OAStackView+Constraint.m"; sourceTree = "<group>"; };
-		852DBCCD50FE2F87C50ECB2C6CD4A0D9 /* OAStackViewAlignmentStrategy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OAStackViewAlignmentStrategy.h; path = Pod/Classes/OAStackViewAlignmentStrategy.h; sourceTree = "<group>"; };
-		9493886107728C629C0F464A9FDE3A3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
 		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		AB214A37ADCE5EC62D6813484E68168C /* OAStackView+Traversal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OAStackView+Traversal.h"; path = "Pod/Classes/OAStackView+Traversal.h"; sourceTree = "<group>"; };
-		ABBDAAED92B3856C6DA0FA78B9263D1D /* OAStackView+Hiding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OAStackView+Hiding.h"; path = "Pod/Classes/OAStackView+Hiding.h"; sourceTree = "<group>"; };
-		AEA07463AADD618152F2A5D17E19B522 /* libINSNibLoading.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libINSNibLoading.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7A0A6711A946E76B4DF8AD695181090 /* OAStackViewAlignmentStrategyBaseline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OAStackViewAlignmentStrategyBaseline.h; path = Pod/Classes/OAStackViewAlignmentStrategyBaseline.h; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BDAD57DBF1C622C4DDCF898F25CECEA7 /* OAStackView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OAStackView.h; path = Pod/Classes/OAStackView.h; sourceTree = "<group>"; };
-		CE1403060D1DCD84E9546D5ACA5CC535 /* OAStackViewDistributionStrategy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OAStackViewDistributionStrategy.m; path = Pod/Classes/OAStackViewDistributionStrategy.m; sourceTree = "<group>"; };
-		D0C3E79032122238C8C873465612A765 /* OAStackView+Traversal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "OAStackView+Traversal.m"; path = "Pod/Classes/OAStackView+Traversal.m"; sourceTree = "<group>"; };
-		E5341D3300AC62D1252C71AB6388168A /* OAStackView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OAStackView-dummy.m"; sourceTree = "<group>"; };
-		ED505D17F7260181F142072430CD03AE /* INSNibLoading.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = INSNibLoading.xcconfig; sourceTree = "<group>"; };
-		F2BD4312DECD75F1E17764F6EA7C9446 /* OATransformLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OATransformLayer.h; path = Pod/Classes/OATransformLayer.h; sourceTree = "<group>"; };
-		FD7A057E525908B45F1EA9F8176E01DC /* OAStackView+Constraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "OAStackView+Constraint.h"; path = "Pod/Classes/OAStackView+Constraint.h"; sourceTree = "<group>"; };
+		BEF70E65713ED7272F4E61F64621ECB9 /* INSNibLoading.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = INSNibLoading.xcconfig; sourceTree = "<group>"; };
+		F314B094BF714E6337A054F54BA85971 /* UIView+INSNibLoading.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+INSNibLoading.h"; path = "INSNibLoading/iOS/UIView+INSNibLoading.h"; sourceTree = "<group>"; };
+		FF1EC5BDFF06A8B661E6BCDEB9E7F0C7 /* UIView+INSNibLoading.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+INSNibLoading.m"; path = "INSNibLoading/iOS/UIView+INSNibLoading.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		06E874FB0BA6AC4D8A1C7DD5E8206AB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DF7D9100E1203F3159CB874D87A8F4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		269AF840047F765E7276F178BCE9CA25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,32 +61,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58EBCBDB9C685F6264F9EC67D388A1D4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A19E0E4C90D7BCC7FD9FBCBF01F6318A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0CED10BB0A76F55553ADE796D13601A9 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E568DDBFCB611887B5FA46B98CDFB701 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D977C720AB6528F46D1B882C456DF05 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		030402C48D53E5BC74FB493973BA7502 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EACE735CA054D41022D615058EF56556 /* INSNibLoading */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,61 +80,13 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		1C5C5509F1DDB93147E6D78C8DCD1210 /* Pods */ = {
+		6FA0D0F20BA4EB28CF3FB4163312E713 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD21014D0293DF98767BD501025B5C3E /* INSNibLoading */,
-				76E0C52D6498FE17C53EFBC615D62C75 /* OAStackView */,
+				092691EEABCC418AD6DCE374BEAA650E /* libINSNibLoading.a */,
+				093DFACECE20EBC24CAA52F23226EC58 /* libPods.a */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		351115004041349461EF2AA0BDDB3594 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */,
-				E5341D3300AC62D1252C71AB6388168A /* OAStackView-dummy.m */,
-				2FAE8E953BC9B888A01336522073181E /* OAStackView-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/OAStackView";
-			sourceTree = "<group>";
-		};
-		3AAECA4AAB4FA9C0C04A44AE3393910F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				ED505D17F7260181F142072430CD03AE /* INSNibLoading.xcconfig */,
-				4C4CB619635DA3B30BE3F6C9CC262B67 /* INSNibLoading-dummy.m */,
-				4B10ED8D0198E84C23513FCDE89E24EE /* INSNibLoading-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/INSNibLoading";
-			sourceTree = "<group>";
-		};
-		76E0C52D6498FE17C53EFBC615D62C75 /* OAStackView */ = {
-			isa = PBXGroup;
-			children = (
-				681765ED21E1F2F8FD591342FDE4261F /* _OALayoutGuide.h */,
-				06AA4AD84DD63A991DC9B63F3C224353 /* _OALayoutGuide.m */,
-				BDAD57DBF1C622C4DDCF898F25CECEA7 /* OAStackView.h */,
-				58DE1989093D9975D1327F2E1FB5E861 /* OAStackView.m */,
-				FD7A057E525908B45F1EA9F8176E01DC /* OAStackView+Constraint.h */,
-				7A089B8DB3ADF467C55CF6A90D476768 /* OAStackView+Constraint.m */,
-				ABBDAAED92B3856C6DA0FA78B9263D1D /* OAStackView+Hiding.h */,
-				78A02BA19C7F7A2C6D10841FC0D89B86 /* OAStackView+Hiding.m */,
-				AB214A37ADCE5EC62D6813484E68168C /* OAStackView+Traversal.h */,
-				D0C3E79032122238C8C873465612A765 /* OAStackView+Traversal.m */,
-				852DBCCD50FE2F87C50ECB2C6CD4A0D9 /* OAStackViewAlignmentStrategy.h */,
-				6A9FA8668171141FD6D1AEC5E57C4386 /* OAStackViewAlignmentStrategy.m */,
-				B7A0A6711A946E76B4DF8AD695181090 /* OAStackViewAlignmentStrategyBaseline.h */,
-				1C99D18CBF5E14909D4928997403C53B /* OAStackViewAlignmentStrategyBaseline.m */,
-				1F54B8CFAEC9F9E2DD1A0B9C030C3742 /* OAStackViewDistributionStrategy.h */,
-				CE1403060D1DCD84E9546D5ACA5CC535 /* OAStackViewDistributionStrategy.m */,
-				F2BD4312DECD75F1E17764F6EA7C9446 /* OATransformLayer.h */,
-				58E68047709FE5CD0B8A288D16028544 /* OATransformLayer.m */,
-				351115004041349461EF2AA0BDDB3594 /* Support Files */,
-			);
-			path = OAStackView;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -206,21 +94,10 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				1C5C5509F1DDB93147E6D78C8DCD1210 /* Pods */,
-				A675391F2156A2C033F8E029D17D564B /* Products */,
+				030402C48D53E5BC74FB493973BA7502 /* Pods */,
+				6FA0D0F20BA4EB28CF3FB4163312E713 /* Products */,
 				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		A675391F2156A2C033F8E029D17D564B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AEA07463AADD618152F2A5D17E19B522 /* libINSNibLoading.a */,
-				4C40F7DC64F2AC77B29AA9DAF8E6745C /* libOAStackView.a */,
-				9493886107728C629C0F464A9FDE3A3F /* libPods.a */,
-				2C17B4A5ED0617619ECECFAE7A6F173C /* OAStackView.bundle */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		B3D1D13E0C6553800746CB8FD61CF946 /* Pods */ = {
@@ -254,12 +131,23 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		DD21014D0293DF98767BD501025B5C3E /* INSNibLoading */ = {
+		D97B9704A55718177EAF90B915B86F47 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				77C6C59612B04F580382ED00F42EA0C0 /* UIView+INSNibLoading.h */,
-				3654CBC7C745B87221F35DD9962B7ABF /* UIView+INSNibLoading.m */,
-				3AAECA4AAB4FA9C0C04A44AE3393910F /* Support Files */,
+				BEF70E65713ED7272F4E61F64621ECB9 /* INSNibLoading.xcconfig */,
+				27DCA4EA619226B0B81FF402F8837060 /* INSNibLoading-dummy.m */,
+				380A5AD1C49EB8404F315736F6939DD8 /* INSNibLoading-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/INSNibLoading";
+			sourceTree = "<group>";
+		};
+		EACE735CA054D41022D615058EF56556 /* INSNibLoading */ = {
+			isa = PBXGroup;
+			children = (
+				F314B094BF714E6337A054F54BA85971 /* UIView+INSNibLoading.h */,
+				FF1EC5BDFF06A8B661E6BCDEB9E7F0C7 /* UIView+INSNibLoading.m */,
+				D97B9704A55718177EAF90B915B86F47 /* Support Files */,
 			);
 			path = INSNibLoading;
 			sourceTree = "<group>";
@@ -267,22 +155,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C79B076F01B4806B439AF2FE83F35709 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33407DA99B39B7CA387D002B77CDBB74 /* _OALayoutGuide.h in Headers */,
-				4988AD373FEAF0B3D3287075576289EB /* OAStackView+Constraint.h in Headers */,
-				33D64F339CF819A4AE3A74A0AD2BDF9B /* OAStackView+Hiding.h in Headers */,
-				68F5344C5ACDF2D38F1E3C08F5CF49FE /* OAStackView+Traversal.h in Headers */,
-				7E098B1C7076A5C76F97172007C95272 /* OAStackView.h in Headers */,
-				001D506E87A5B7097BD094313297C453 /* OAStackViewAlignmentStrategy.h in Headers */,
-				543F919A9263D75AD09FD35D4119FBEF /* OAStackViewAlignmentStrategyBaseline.h in Headers */,
-				F6B4D403FAF6FD5DDE3AC036A520EB0C /* OAStackViewDistributionStrategy.h in Headers */,
-				8FA5498B976319A4DB8A58B9E68F09EF /* OATransformLayer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FA7CAD89DCB64FE09C8D7E2DBCA81B82 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,22 +166,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2728D1720063D2C4734E38C851F43244 /* OAStackView-OAStackView */ = {
+		1CA78A54DBCC3366A683A48E0795DD12 /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B91EC3FF6497E68A4753D6100332510 /* Build configuration list for PBXNativeTarget "OAStackView-OAStackView" */;
+			buildConfigurationList = ABC75CA5AD81CB1BB9928FEB5BFEE248 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				6ADCBC8547303953046616B69E960001 /* Sources */,
-				58EBCBDB9C685F6264F9EC67D388A1D4 /* Frameworks */,
-				6077AA372EF6CFA54CB4874175A107D1 /* Resources */,
+				4F2DEE04D28DD94D5DEAFA05F533AE31 /* Sources */,
+				06E874FB0BA6AC4D8A1C7DD5E8206AB9 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B8B6105BA27D8692EF39AB3A5F685F7D /* PBXTargetDependency */,
 			);
-			name = "OAStackView-OAStackView";
-			productName = "OAStackView-OAStackView";
-			productReference = 2C17B4A5ED0617619ECECFAE7A6F173C /* OAStackView.bundle */;
-			productType = "com.apple.product-type.bundle";
+			name = Pods;
+			productName = Pods;
+			productReference = 093DFACECE20EBC24CAA52F23226EC58 /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		2C66E46D2FF14E95B5038DEAB7472293 /* INSNibLoading */ = {
 			isa = PBXNativeTarget;
@@ -325,43 +197,7 @@
 			);
 			name = INSNibLoading;
 			productName = INSNibLoading;
-			productReference = AEA07463AADD618152F2A5D17E19B522 /* libINSNibLoading.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		365633CD8B0DF7C4958078415EE9D71D /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1BAF048BEC19CEC9D060EE44E7C7A0F /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				D670423F7D85BE55251FDD823278D3B8 /* Sources */,
-				A19E0E4C90D7BCC7FD9FBCBF01F6318A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7BA3D719E1331B6A06A2E82E7768B49 /* PBXTargetDependency */,
-				82C48B865849EF6DF2D6DDCB59E7ABC3 /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 9493886107728C629C0F464A9FDE3A3F /* libPods.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		9331DC06026102A6939CE75D29D7684E /* OAStackView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D45E6A4080164AB4506E2A6FD8977300 /* Build configuration list for PBXNativeTarget "OAStackView" */;
-			buildPhases = (
-				157A9500949A06CE744F134BDC556FCA /* Sources */,
-				E568DDBFCB611887B5FA46B98CDFB701 /* Frameworks */,
-				C79B076F01B4806B439AF2FE83F35709 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				37D619CD870A7A716AC605BEF80EF04C /* PBXTargetDependency */,
-			);
-			name = OAStackView;
-			productName = OAStackView;
-			productReference = 4C40F7DC64F2AC77B29AA9DAF8E6745C /* libOAStackView.a */;
+			productReference = 092691EEABCC418AD6DCE374BEAA650E /* libINSNibLoading.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -381,43 +217,22 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A675391F2156A2C033F8E029D17D564B /* Products */;
+			productRefGroup = 6FA0D0F20BA4EB28CF3FB4163312E713 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2C66E46D2FF14E95B5038DEAB7472293 /* INSNibLoading */,
-				9331DC06026102A6939CE75D29D7684E /* OAStackView */,
-				2728D1720063D2C4734E38C851F43244 /* OAStackView-OAStackView */,
-				365633CD8B0DF7C4958078415EE9D71D /* Pods */,
+				1CA78A54DBCC3366A683A48E0795DD12 /* Pods */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		6077AA372EF6CFA54CB4874175A107D1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		157A9500949A06CE744F134BDC556FCA /* Sources */ = {
+		4F2DEE04D28DD94D5DEAFA05F533AE31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B842171AC4FC59E806159A6A263898E /* _OALayoutGuide.m in Sources */,
-				9AD30134017A03966BED6AAC705C7C92 /* OAStackView+Constraint.m in Sources */,
-				165AD11E9D34B83AC9262E2A78BED040 /* OAStackView+Hiding.m in Sources */,
-				5DA9D80A3BC3AA013585632EE9C13421 /* OAStackView+Traversal.m in Sources */,
-				34997BA365E320B2BEC7EFA2BD381AB2 /* OAStackView-dummy.m in Sources */,
-				357028869021D2CF599B2A61B82072E0 /* OAStackView.m in Sources */,
-				CBB1612BD3819230D648B53F8DDE88AE /* OAStackViewAlignmentStrategy.m in Sources */,
-				2EBE97DEFD6D90D257553945B2A9657F /* OAStackViewAlignmentStrategyBaseline.m in Sources */,
-				533B20F8D3529097D73E79A0E5A8C842 /* OAStackViewDistributionStrategy.m in Sources */,
-				E98B259CE519A4FBE933F01189D4402D /* OATransformLayer.m in Sources */,
+				A06B18F8C6DC75C4C8F0168EC998B1D5 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,82 +245,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6ADCBC8547303953046616B69E960001 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D670423F7D85BE55251FDD823278D3B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D34DAB0BC3E4F72E445F95CDCBE99646 /* Pods-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		37D619CD870A7A716AC605BEF80EF04C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "OAStackView-OAStackView";
-			target = 2728D1720063D2C4734E38C851F43244 /* OAStackView-OAStackView */;
-			targetProxy = 70424A7E2ABAAD02326505533511AA13 /* PBXContainerItemProxy */;
-		};
-		82C48B865849EF6DF2D6DDCB59E7ABC3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAStackView;
-			target = 9331DC06026102A6939CE75D29D7684E /* OAStackView */;
-			targetProxy = B241E68C2C3FF0E3C08B5723ECB455F2 /* PBXContainerItemProxy */;
-		};
-		C7BA3D719E1331B6A06A2E82E7768B49 /* PBXTargetDependency */ = {
+		B8B6105BA27D8692EF39AB3A5F685F7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = INSNibLoading;
 			target = 2C66E46D2FF14E95B5038DEAB7472293 /* INSNibLoading */;
-			targetProxy = 43CE42173F7B3D18F95BCFB38A05C1F0 /* PBXContainerItemProxy */;
+			targetProxy = 3F35C70EDE6927CD99DF6CE2B42AC702 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		219C7415920FF8033E1AB67F958CF20B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		3A103C7C36B050EF86F852C1324AB365 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		488B1DECC1B15C37E0324F37C6BB1758 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED505D17F7260181F142072430CD03AE /* INSNibLoading.xcconfig */;
+			baseConfigurationReference = BEF70E65713ED7272F4E61F64621ECB9 /* INSNibLoading.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/INSNibLoading/INSNibLoading-prefix.pch";
@@ -520,24 +274,6 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
-		};
-		7D5F1C4F26FCB86F95D0ECFC280F9765 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OAStackView/OAStackView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
 		};
 		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -578,47 +314,39 @@
 			};
 			name = Debug;
 		};
-		B643A902FB9923332F4475EB1425C05D /* Release */ = {
+		CDABB249DDDCAD7637F6102FD3D9799C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */;
+			baseConfigurationReference = 4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = OAStackView;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
-		D71935DD8815142E1BA39C720C383876 /* Release */ = {
+		F6ECBEB14DD77741F24991A455622692 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */;
+			baseConfigurationReference = 98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OAStackView/OAStackView-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
-		};
-		E4EB5A13C9C3CB1FF0B61C6EB628A7A4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 284B91266413D6F7DCC72C2155159973 /* OAStackView.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = OAStackView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
 		};
 		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -656,7 +384,7 @@
 		};
 		FD61BF97E507DC3F32F71CC84076D7F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED505D17F7260181F142072430CD03AE /* INSNibLoading.xcconfig */;
+			baseConfigurationReference = BEF70E65713ED7272F4E61F64621ECB9 /* INSNibLoading.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/INSNibLoading/INSNibLoading-prefix.pch";
@@ -684,11 +412,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B91EC3FF6497E68A4753D6100332510 /* Build configuration list for PBXNativeTarget "OAStackView-OAStackView" */ = {
+		ABC75CA5AD81CB1BB9928FEB5BFEE248 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E4EB5A13C9C3CB1FF0B61C6EB628A7A4 /* Debug */,
-				B643A902FB9923332F4475EB1425C05D /* Release */,
+				CDABB249DDDCAD7637F6102FD3D9799C /* Debug */,
+				F6ECBEB14DD77741F24991A455622692 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -698,24 +426,6 @@
 			buildConfigurations = (
 				FD61BF97E507DC3F32F71CC84076D7F8 /* Debug */,
 				488B1DECC1B15C37E0324F37C6BB1758 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D45E6A4080164AB4506E2A6FD8977300 /* Build configuration list for PBXNativeTarget "OAStackView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7D5F1C4F26FCB86F95D0ECFC280F9765 /* Debug */,
-				D71935DD8815142E1BA39C720C383876 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1BAF048BEC19CEC9D060EE44E7C7A0F /* Build configuration list for PBXNativeTarget "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				219C7415920FF8033E1AB67F958CF20B /* Debug */,
-				3A103C7C36B050EF86F852C1324AB365 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

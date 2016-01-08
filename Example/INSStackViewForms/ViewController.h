@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "INSStackFormView.h"
-#import "INSOAStackFormView.h"
 
-@interface ViewController : INSStackFormView
+@interface ViewController : UIViewController
 
 
 @end

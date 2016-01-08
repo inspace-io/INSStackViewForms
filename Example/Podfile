@@ -1,3 +1,2 @@
 platform :ios, "8.0"
 pod 'INSNibLoading'
-pod 'OAStackView', :git => 'https://github.com/oarrabi/OAStackView.git'

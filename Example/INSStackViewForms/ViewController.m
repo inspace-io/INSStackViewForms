@@ -15,7 +15,8 @@
 #import "INSStackFormViewLabelElement.h"
 #import "INSStackFormViewTextFieldElement.h"
 
-@interface ViewController ()
+@interface ViewController () <INSStackViewFormViewDateSource>
+@property (weak, nonatomic) IBOutlet INSStackFormView *stackFormView;
 
 @end
 
@@ -25,6 +26,7 @@
     
     [super viewDidLoad];
 
+    self.stackFormView.dataSource = self;
     // Do any additional setup after loading the view, typically from a nib.
     
     INSStackFormItem *item = [[INSStackFormItem alloc] init];
@@ -36,15 +38,15 @@
     
     __weak typeof(self) weakSelf = self;
     item.actionBlock = ^(INSStackFormViewBaseElement *view) {
-        [weakSelf removeItem:view.item fromSection:view.section animated:NO completion:nil];
+        [weakSelf.stackFormView removeItem:view.item fromSection:view.section animated:NO completion:nil];
     };
     
-    [self insertItem:item atIndex:1 toSection:self.sections[0]];
+    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
     
 }
 
-- (NSMutableArray <INSStackFormSection *> *)initialCollectionSections {
-    NSMutableArray *sections = [super initialCollectionSections];
+- (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView {
+    NSMutableArray *sections = [NSMutableArray array];
     
     __weak typeof(self) weakSelf = self;
     
@@ -135,8 +137,8 @@
             
             builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 NSArray *errors = nil;
-                if ([weakSelf validateDataItems:&errors]) {
-                    [weakSelf removeSection:[weakSelf.sections firstObject] animated:YES completion:nil];
+                if ([weakSelf.stackFormView validateDataItems:&errors]) {
+                    [weakSelf.stackFormView removeSection:[weakSelf.stackFormView.sections firstObject] animated:YES completion:nil];
                 } else {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[errors firstObject] preferredStyle:UIAlertControllerStyleAlert];
                     [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -148,7 +150,7 @@
             };
             
             builder.validationBlock = ^BOOL(__kindof UIView *view, INSStackFormItem *item, NSString **errorMessage) {
-                if (weakSelf.sections.count <= 1) {
+                if (weakSelf.stackFormView.sections.count <= 1) {
                     *errorMessage = @"Please don't delete me !!!";
                     return NO;
                 }

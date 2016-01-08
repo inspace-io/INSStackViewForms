@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '01733F9A5F630D46B1CEE41E'
+               BlueprintIdentifier = 'B2885C31F7023C44ABD7C978'
                BlueprintName = 'INSNibLoading'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libINSNibLoading.a'>
