@@ -6,8 +6,8 @@
 //  Copyright © 2016 Inspace Labs Sp z o. o. Spółka Komandytowa. All rights reserved.
 //
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 
-@interface CustomView : INSStackViewFormView
+@interface CustomView : INSStackFormViewBaseElement
 
 @end

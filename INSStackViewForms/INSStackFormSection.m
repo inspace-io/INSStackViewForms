@@ -1,5 +1,5 @@
 //
-//  INSStackViewFormSection.m
+//  INSStackFormSection.m
 //  INSStackViewForms
 //
 //  Created by Michal Zaborowski on 03.01.2016.
@@ -23,20 +23,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "INSStackViewFormSection.h"
+#import "INSStackFormSection.h"
 
-@interface INSStackViewFormSection ()
-@property (nonatomic, strong) NSMutableArray <INSStackViewFormItem *> *sectionItems;
+@interface INSStackFormSection ()
+@property (nonatomic, strong) NSMutableArray <INSStackFormItem *> *sectionItems;
 @end
 
-@implementation INSStackViewFormSection
+@implementation INSStackFormSection
 
-- (NSArray <INSStackViewFormItem *> *)items {
+- (NSArray <INSStackFormItem *> *)items {
     return [self.sectionItems copy];
 }
 
-+ (instancetype)sectionWithBuilder:(void(^)(INSStackViewFormSection *sectionBuilder))block {
-    INSStackViewFormSection *section = [[INSStackViewFormSection alloc] init];
++ (instancetype)sectionWithBuilder:(void(^)(INSStackFormSection *sectionBuilder))block {
+    INSStackFormSection *section = [[INSStackFormSection alloc] init];
     block(section);
     return section;
 }
@@ -48,34 +48,34 @@
     return self;
 }
 
-- (INSStackViewFormItem *)addFooterWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
-    INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
+- (INSStackFormItem *)addFooterWithBuilder:(void(^)(INSStackFormItem *builder))block {
+    INSStackFormItem *builder = [[INSStackFormItem alloc] init];
     block(builder);
     self.footerItem = builder;
     return builder;
 }
-- (INSStackViewFormItem *)addHeaderWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
-    INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
+- (INSStackFormItem *)addHeaderWithBuilder:(void(^)(INSStackFormItem *builder))block {
+    INSStackFormItem *builder = [[INSStackFormItem alloc] init];
     block(builder);
     self.headerItem = builder;
     return builder;
 }
-- (INSStackViewFormItem *)addItemWithBuilder:(void(^)(INSStackViewFormItem *builder))block {
-    INSStackViewFormItem *builder = [[INSStackViewFormItem alloc] init];
+- (INSStackFormItem *)addItemWithBuilder:(void(^)(INSStackFormItem *builder))block {
+    INSStackFormItem *builder = [[INSStackFormItem alloc] init];
     block(builder);
     [self.sectionItems addObject:builder];
     return builder;
 }
 
-- (void)addItem:(INSStackViewFormItem *)item {
+- (void)addItem:(INSStackFormItem *)item {
     [self.sectionItems addObject:item];
 }
 
-- (void)insertItem:(INSStackViewFormItem *)item atIndex:(NSUInteger)index {
+- (void)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index {
     [self.sectionItems insertObject:item atIndex:index];
 }
 
-- (void)removeItem:(INSStackViewFormItem *)item {
+- (void)removeItem:(INSStackFormItem *)item {
     [self.sectionItems removeObject:item];
 }
 

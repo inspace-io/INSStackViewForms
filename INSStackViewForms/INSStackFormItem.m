@@ -1,5 +1,5 @@
 //
-//  INSStackViewFormView_Private.h
+//  INSStackFormItem.m
 //  INSStackViewForms
 //
 //  Created by Michal Zaborowski on 03.01.2016.
@@ -23,9 +23,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormItem.h"
 
-@interface INSStackViewFormView ()
-@property (nonatomic, strong) INSStackViewFormSection *section;
-@property (nonatomic, strong) INSStackViewFormItem *item;
+@implementation INSStackFormItem
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _userInteractionEnabled = YES;
+    }
+    return self;
+}
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSStackViewFormViewController.h"
-#import "INSOAStackViewFormViewController.h"
+#import "INSStackFormView.h"
+#import "INSOAStackFormView.h"
 
-@interface ViewController : INSStackViewFormViewController
+@interface ViewController : INSStackFormView
 
 
 @end

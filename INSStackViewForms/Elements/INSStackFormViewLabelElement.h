@@ -6,9 +6,9 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 
-@interface INSStackViewLabelElement : INSStackViewFormView
+@interface INSStackFormViewLabelElement : INSStackFormViewBaseElement
 @property (nonatomic, readonly, strong) UILabel *textLabel;
 @property (nonatomic, readonly, strong) UILabel *detailTextLabel;
 @end

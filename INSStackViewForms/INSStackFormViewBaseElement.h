@@ -24,21 +24,21 @@
 //  THE SOFTWARE.
 
 @import UIKit;
-#import "INSStackViewFormSection.h"
-#import "INSStackViewFormItem.h"
+#import "INSStackFormSection.h"
+#import "INSStackFormItem.h"
 
-typedef NS_ENUM(NSInteger, INSStackViewFormViewAccessoryType) {
-    INSStackViewFormViewAccessoryNone,    // clear accessory view
-    INSStackViewFormViewAccessoryDisclosureIndicator
+typedef NS_ENUM(NSInteger, INSStackFormViewBaseElementAccessoryType) {
+    INSStackFormViewBaseElementAccessoryNone,    // clear accessory view
+    INSStackFormViewBaseElementAccessoryDisclosureIndicator
 };
 
-@interface INSStackViewFormView : UIControl
-@property (nonatomic, strong, readonly) INSStackViewFormSection *section;
-@property (nonatomic, strong, readonly) INSStackViewFormItem *item;
+@interface INSStackFormViewBaseElement : UIControl
+@property (nonatomic, strong, readonly) INSStackFormSection *section;
+@property (nonatomic, strong, readonly) INSStackFormItem *item;
 
 @property (nonatomic, readonly, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *accessoryView;
-@property (nonatomic, assign) INSStackViewFormViewAccessoryType accesoryType;
+@property (nonatomic, assign) INSStackFormViewBaseElementAccessoryType accesoryType;
 
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 

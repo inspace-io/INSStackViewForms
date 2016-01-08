@@ -6,8 +6,8 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewFormViewController.h"
+#import "INSStackFormView.h"
 
-@interface INSOAStackViewFormViewController : INSStackViewFormViewController
+@interface INSOAStackFormView : INSStackFormView
 
 @end

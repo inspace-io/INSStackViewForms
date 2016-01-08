@@ -6,9 +6,9 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 
-@interface ActionView : INSStackViewFormView
+@interface ActionView : INSStackFormViewBaseElement
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 

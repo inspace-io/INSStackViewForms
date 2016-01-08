@@ -1,5 +1,5 @@
 //
-//  INSStackViewFormItem.m
+//  INSStackFormSection.h
 //  INSStackViewForms
 //
 //  Created by Michal Zaborowski on 03.01.2016.
@@ -23,14 +23,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "INSStackViewFormItem.h"
+#import "INSStackFormItem.h"
 
-@implementation INSStackViewFormItem
+@interface INSStackFormSection : NSObject
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSNumber *headerHeight;
+@property (nonatomic, copy) NSNumber *footerHeight;
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _userInteractionEnabled = YES;
-    }
-    return self;
-}
+@property (nonatomic, strong) INSStackFormItem *headerItem;
+@property (nonatomic, strong) INSStackFormItem *footerItem;
+
+@property (nonatomic, assign) BOOL showItemSeparators;
+@property (nonatomic, assign) UIEdgeInsets separatorInset;
+
+@property (nonatomic, readonly) NSArray <INSStackFormItem *> *items;
+
+- (INSStackFormItem *)addFooterWithBuilder:(void(^)(INSStackFormItem *builder))block;
+- (INSStackFormItem *)addHeaderWithBuilder:(void(^)(INSStackFormItem *builder))block;
+- (INSStackFormItem *)addItemWithBuilder:(void(^)(INSStackFormItem *builder))block;
+
+- (void)addItem:(INSStackFormItem *)item;
+- (void)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index;
+- (void)removeItem:(INSStackFormItem *)item;
+
++ (instancetype)sectionWithBuilder:(void(^)(INSStackFormSection *sectionBuilder))block;
 @end

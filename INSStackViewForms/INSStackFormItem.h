@@ -1,5 +1,5 @@
 //
-//  INSStackViewFormItem.h
+//  INSStackFormItem.h
 //  INSStackViewForms
 //
 //  Created by Michal Zaborowski on 03.01.2016.
@@ -25,12 +25,12 @@
 
 @import UIKit;
 
-@class INSStackViewFormItem;
+@class INSStackFormItem;
 
-typedef void(^INSStackViewFormItemBlock)(__kindof UIView *item);
-typedef BOOL(^INSStackViewFormItemValidationBlock)(__kindof UIView *view, INSStackViewFormItem *item, NSString **errorMessage);
+typedef void(^INSStackFormItemBlock)(__kindof UIView *item);
+typedef BOOL(^INSStackFormItemValidationBlock)(__kindof UIView *view, INSStackFormItem *item, NSString **errorMessage);
 
-@interface INSStackViewFormItem : NSObject
+@interface INSStackFormItem : NSObject
 @property (nonatomic, strong) Class itemClass;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *title;
@@ -39,8 +39,8 @@ typedef BOOL(^INSStackViewFormItemValidationBlock)(__kindof UIView *view, INSSta
 @property (nonatomic, assign) BOOL userInteractionEnabled;
 @property (nonatomic, copy) NSNumber *height;
 
-@property (nonatomic, copy) INSStackViewFormItemBlock configurationBlock;
-@property (nonatomic, copy) INSStackViewFormItemBlock actionBlock;
-@property (nonatomic, copy) INSStackViewFormItemValidationBlock validationBlock;
+@property (nonatomic, copy) INSStackFormItemBlock configurationBlock;
+@property (nonatomic, copy) INSStackFormItemBlock actionBlock;
+@property (nonatomic, copy) INSStackFormItemValidationBlock validationBlock;
 
 @end

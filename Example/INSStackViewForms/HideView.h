@@ -6,8 +6,8 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 
-@interface HideView : INSStackViewFormView
+@interface HideView : INSStackFormViewBaseElement
 
 @end

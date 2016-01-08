@@ -7,13 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 #import "CustomView.h"
 #import "HideView.h"
 #import "SectionHeaderView.h"
 #import "ActionView.h"
-#import "INSStackViewLabelElement.h"
-#import "INSStackViewTextFieldElement.h"
+#import "INSStackFormViewLabelElement.h"
+#import "INSStackFormViewTextFieldElement.h"
 
 @interface ViewController ()
 
@@ -27,15 +27,15 @@
 
     // Do any additional setup after loading the view, typically from a nib.
     
-    INSStackViewFormItem *item = [[INSStackViewFormItem alloc] init];
-    item.itemClass = [INSStackViewFormView class];
+    INSStackFormItem *item = [[INSStackFormItem alloc] init];
+    item.itemClass = [INSStackFormViewBaseElement class];
     item.height = @100;
-    item.configurationBlock = ^(INSStackViewFormView *view) {
+    item.configurationBlock = ^(INSStackFormViewBaseElement *view) {
         view.backgroundColor = [UIColor blackColor];
     };
     
     __weak typeof(self) weakSelf = self;
-    item.actionBlock = ^(INSStackViewFormView *view) {
+    item.actionBlock = ^(INSStackFormViewBaseElement *view) {
         [weakSelf removeItem:view.item fromSection:view.section animated:NO completion:nil];
     };
     
@@ -43,60 +43,60 @@
     
 }
 
-- (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections {
+- (NSMutableArray <INSStackFormSection *> *)initialCollectionSections {
     NSMutableArray *sections = [super initialCollectionSections];
     
     __weak typeof(self) weakSelf = self;
     
-    [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
+    [sections addObject:[INSStackFormSection sectionWithBuilder:^(INSStackFormSection *sectionBuilder) {
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [CustomView class];
             builder.userInteractionEnabled = NO;
             builder.height = nil; // dynamic height
-            builder.configurationBlock = ^(INSStackViewFormView *view) {
+            builder.configurationBlock = ^(INSStackFormViewBaseElement *view) {
                 view.backgroundColor = [UIColor whiteColor];
             };
         }];
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [HideView class];
             builder.userInteractionEnabled = NO;
             builder.height = @50;
         }];
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
-            builder.itemClass = [INSStackViewFormView class];
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewBaseElement class];
             builder.height = @50;
-            builder.configurationBlock = ^(INSStackViewFormView *view) {
+            builder.configurationBlock = ^(INSStackFormViewBaseElement *view) {
                 view.backgroundColor = [UIColor whiteColor];
             };
-            builder.actionBlock = ^(INSStackViewFormView *view) {
+            builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 NSLog(@"ACTION");
             };
         }];
         
     }]];
     
-    [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
+    [sections addObject:[INSStackFormSection sectionWithBuilder:^(INSStackFormSection *sectionBuilder) {
         sectionBuilder.showItemSeparators = YES;
         sectionBuilder.separatorInset = UIEdgeInsetsMake(0, 12, 0, 0);
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
-            builder.itemClass = [INSStackViewLabelElement class];
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewLabelElement class];
             builder.title = @"TEST";
             builder.height = @50;
-            builder.actionBlock = ^(INSStackViewFormView *view) {
+            builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 
             };
         }];
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
-            builder.itemClass = [INSStackViewTextFieldElement class];
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewTextFieldElement class];
             builder.title = nil;
             builder.subtitle = nil;
             builder.height = @50;
-            builder.configurationBlock = ^(INSStackViewTextFieldElement *view) {
+            builder.configurationBlock = ^(INSStackFormViewTextFieldElement *view) {
                 view.textField.placeholder = @"Placeholder";
             };
         }];
@@ -104,11 +104,11 @@
         
     }]];
     
-    [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {
+    [sections addObject:[INSStackFormSection sectionWithBuilder:^(INSStackFormSection *sectionBuilder) {
         sectionBuilder.showItemSeparators = YES;
         sectionBuilder.separatorInset = UIEdgeInsetsMake(0, 12, 0, 0);
         
-        [sectionBuilder addHeaderWithBuilder:^(INSStackViewFormItem *builder) {
+        [sectionBuilder addHeaderWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [SectionHeaderView class];
             builder.height = @60;
             builder.configurationBlock = ^(SectionHeaderView *view) {
@@ -116,24 +116,24 @@
             };
         }];
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [ActionView class];
             builder.height = @50;
             builder.configurationBlock = ^(ActionView *view) {
-                view.accesoryType = INSStackViewFormViewAccessoryNone;
+                view.accesoryType = INSStackFormViewBaseElementAccessoryNone;
                 view.titleLabel.text = @"Click Me to show details!";
             };
         }];
         
-        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [ActionView class];
             builder.height = @50;
             builder.configurationBlock = ^(ActionView *view) {
-                view.accesoryType = INSStackViewFormViewAccessoryNone;
+                view.accesoryType = INSStackFormViewBaseElementAccessoryNone;
                 view.titleLabel.text = @"Click Me to remove section!";
             };
             
-            builder.actionBlock = ^(INSStackViewFormView *view) {
+            builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 NSArray *errors = nil;
                 if ([weakSelf validateDataItems:&errors]) {
                     [weakSelf removeSection:[weakSelf.sections firstObject] animated:YES completion:nil];
@@ -147,7 +147,7 @@
                 
             };
             
-            builder.validationBlock = ^BOOL(__kindof UIView *view, INSStackViewFormItem *item, NSString **errorMessage) {
+            builder.validationBlock = ^BOOL(__kindof UIView *view, INSStackFormItem *item, NSString **errorMessage) {
                 if (weakSelf.sections.count <= 1) {
                     *errorMessage = @"Please don't delete me !!!";
                     return NO;

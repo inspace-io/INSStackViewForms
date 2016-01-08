@@ -25,38 +25,44 @@
 
 
 @import UIKit;
-#import "INSStackViewFormSection.h"
+#import "INSStackFormSection.h"
 
-@interface INSStackViewFormViewController : UIViewController
+@class INSStackViewFormView;
+
+@protocol INSStackViewFormViewControllerDateSource <NSObject>
+//- (NSArray <INSStackFormSection *> *)stackViewFormView:(INSStackViewFormView *)stackViewFormView
+@end
+
+@interface INSStackFormView : UIViewController
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong, readonly) UIStackView *stackView;
 
-@property (nonatomic, strong, readonly) NSArray <INSStackViewFormSection *> *sections;
+@property (nonatomic, strong, readonly) NSArray <INSStackFormSection *> *sections;
 
 + (Class)scrollViewClass;
 + (Class)stackViewClass;
 
-- (NSMutableArray <INSStackViewFormSection *> *)initialCollectionSections;
+- (NSMutableArray <INSStackFormSection *> *)initialCollectionSections;
 - (void)reloadData;
 - (void)refreshViews;
 
-- (INSStackViewFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackViewFormSection *)section;
-- (INSStackViewFormSection *)sectionWithIdentifier:(NSString *)identifier;
+- (INSStackFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackFormSection *)section;
+- (INSStackFormSection *)sectionWithIdentifier:(NSString *)identifier;
 
-- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackViewFormSection *)section;
-- (__kindof UIView *)viewForItem:(INSStackViewFormItem *)item inSection:(INSStackViewFormSection *)section;
+- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackFormSection *)section;
+- (__kindof UIView *)viewForItem:(INSStackFormItem *)item inSection:(INSStackFormSection *)section;
 
-- (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
-- (void)removeItem:(INSStackViewFormItem *)item fromSection:(INSStackViewFormSection *)section;
+- (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
+- (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section;
 
-- (__kindof UIView *)addItem:(INSStackViewFormItem *)item toSection:(INSStackViewFormSection *)section;
-- (__kindof UIView *)insertItem:(INSStackViewFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackViewFormSection *)section;
+- (__kindof UIView *)addItem:(INSStackFormItem *)item toSection:(INSStackFormSection *)section;
+- (__kindof UIView *)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackFormSection *)section;
 
-- (void)removeSection:(INSStackViewFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
-- (void)removeSection:(INSStackViewFormSection *)section;
+- (void)removeSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
+- (void)removeSection:(INSStackFormSection *)section;
 
-- (NSArray <__kindof UIView *> *)addSection:(INSStackViewFormSection *)section;
-- (NSArray <__kindof UIView *> *)insertSection:(INSStackViewFormSection *)section atIndex:(NSUInteger)index;
+- (NSArray <__kindof UIView *> *)addSection:(INSStackFormSection *)section;
+- (NSArray <__kindof UIView *> *)insertSection:(INSStackFormSection *)section atIndex:(NSUInteger)index;
 
 - (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages;
 

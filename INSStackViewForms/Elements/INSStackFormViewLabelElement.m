@@ -6,15 +6,15 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewLabelElement.h"
+#import "INSStackFormViewLabelElement.h"
 
-@interface INSStackViewLabelElement ()
+@interface INSStackFormViewLabelElement ()
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UILabel *detailTextLabel;
 @property (nonatomic, strong) NSLayoutConstraint *detailTextLabelTrailingConstraint;
 @end
 
-@implementation INSStackViewLabelElement
+@implementation INSStackFormViewLabelElement
 
 - (void)setAccessoryView:(UIView *)accessoryView {
     [super setAccessoryView:accessoryView];

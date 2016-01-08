@@ -1,14 +1,14 @@
 //
-//  INSStackViewTextFieldElement.h
+//  INSStackFormViewTextFieldElement.h
 //  INSStackViewForms
 //
 //  Created by Michal Zaborowski on 08.01.2016.
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSStackViewFormView.h"
+#import "INSStackFormViewBaseElement.h"
 
-@interface INSStackViewTextFieldElement : INSStackViewFormView
+@interface INSStackFormViewTextFieldElement : INSStackFormViewBaseElement
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UITextField *textField;
 

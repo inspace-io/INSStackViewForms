@@ -15,7 +15,7 @@
     if (self = [super initWithFrame:frame]) {
         [self ins_loadContentsFromNib];
         
-        self.accesoryType = INSStackViewFormViewAccessoryDisclosureIndicator;
+        self.accesoryType = INSStackFormViewBaseElementAccessoryDisclosureIndicator;
     }
     return self;
 }

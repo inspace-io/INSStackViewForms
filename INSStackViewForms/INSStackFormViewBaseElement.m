@@ -23,8 +23,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "INSStackViewFormView.h"
-#import "INSStackViewFormView_Private.h"
+#import "INSStackFormViewBaseElement.h"
+#import "INSStackFormViewBaseElement_Private.h"
 
 @interface INSStackViewFormTransparentView : UIView
 @end
@@ -42,7 +42,7 @@
 
 @end
 
-@interface INSStackViewFormView ()
+@interface INSStackFormViewBaseElement ()
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIView *accessoryContentView;
@@ -55,7 +55,7 @@
 
 @end
 
-@implementation INSStackViewFormView
+@implementation INSStackFormViewBaseElement
 
 + (NSBundle *)resourcesBundle {
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"INSStackViewForms" ofType:@"bundle"];
@@ -94,9 +94,9 @@
     }
 }
 
-- (void)setAccesoryType:(INSStackViewFormViewAccessoryType)accesoryType {
+- (void)setAccesoryType:(INSStackFormViewBaseElementAccessoryType)accesoryType {
     _accesoryType = accesoryType;
-    if (_accesoryType == INSStackViewFormViewAccessoryDisclosureIndicator) {
+    if (_accesoryType == INSStackFormViewBaseElementAccessoryDisclosureIndicator) {
         UIImageView *disclousureIndicator = [[UIImageView alloc] initWithFrame:(CGRect){.size = CGSizeMake(8, 14)}];
         disclousureIndicator.image = [UIImage imageNamed:@"forwardarrow" inBundle:[[self class] resourcesBundle] compatibleWithTraitCollection:nil];
         self.accessoryView = disclousureIndicator;
@@ -303,7 +303,7 @@
     }
     
     if (self.item.actionBlock) {
-        self.accesoryType = INSStackViewFormViewAccessoryDisclosureIndicator;
+        self.accesoryType = INSStackFormViewBaseElementAccessoryDisclosureIndicator;
     }
 }
 
@@ -345,7 +345,7 @@
     }
 }
 
-- (void)userDidSelectView:(INSStackViewFormView *)sender {
+- (void)userDidSelectView:(INSStackFormViewBaseElement *)sender {
     [self setHighlighted:NO animated:YES];
     
     if (self.item.actionBlock) {
@@ -353,7 +353,7 @@
     }
 }
 
-- (void)controlTouchDownInside:(INSStackViewFormView *)sender {
+- (void)controlTouchDownInside:(INSStackFormViewBaseElement *)sender {
     [self setHighlighted:YES animated:YES];
 }
 

@@ -6,14 +6,10 @@
 //  Copyright © 2016 Michal Zaborowski. All rights reserved.
 //
 
-#import "INSOAStackViewFormViewController.h"
+#import "INSOAStackFormView.h"
 #import <OAStackView/OAStackView.h>
 
-@interface INSOAStackViewFormViewController ()
-
-@end
-
-@implementation INSOAStackViewFormViewController
+@implementation INSOAStackFormView
 
 + (Class)stackViewClass {
     return [OAStackView class];
