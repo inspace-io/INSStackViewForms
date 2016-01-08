@@ -13,6 +13,7 @@
 #import "SectionHeaderView.h"
 #import "ActionView.h"
 #import "INSStackViewLabelElement.h"
+#import "INSStackViewTextFieldElement.h"
 
 @interface ViewController ()
 
@@ -84,12 +85,23 @@
         [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
             builder.itemClass = [INSStackViewLabelElement class];
             builder.title = @"TEST";
-            builder.subtitle = @"SUBTITLE";
             builder.height = @50;
             builder.actionBlock = ^(INSStackViewFormView *view) {
                 
             };
         }];
+        
+        [sectionBuilder addItemWithBuilder:^(INSStackViewFormItem *builder) {
+            builder.itemClass = [INSStackViewTextFieldElement class];
+            builder.title = nil;
+            builder.subtitle = nil;
+            builder.height = @50;
+            builder.configurationBlock = ^(INSStackViewTextFieldElement *view) {
+                view.textField.placeholder = @"Placeholder";
+            };
+        }];
+        
+        
     }]];
     
     [sections addObject:[INSStackViewFormSection sectionWithBuilder:^(INSStackViewFormSection *sectionBuilder) {

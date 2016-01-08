@@ -27,6 +27,7 @@
 		64788DDA1C39D9C700B4B872 /* INSStackViewFormSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788DD31C39D9C700B4B872 /* INSStackViewFormSection.m */; };
 		64788DDB1C39D9C700B4B872 /* INSStackViewFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788DD61C39D9C700B4B872 /* INSStackViewFormView.m */; };
 		64788DDC1C39D9C700B4B872 /* INSStackViewFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64788DD81C39D9C700B4B872 /* INSStackViewFormViewController.m */; };
+		64D6AD591C40541B0094FA34 /* INSStackViewTextFieldElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D6AD581C40541B0094FA34 /* INSStackViewTextFieldElement.m */; };
 		E6C7B04D4262E36F3107F795 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCC4314E2A9F6F978E8BB22 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		64788DD61C39D9C700B4B872 /* INSStackViewFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INSStackViewFormView.m; path = ../../INSStackViewForms/INSStackViewFormView.m; sourceTree = "<group>"; };
 		64788DD71C39D9C700B4B872 /* INSStackViewFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INSStackViewFormViewController.h; path = ../../INSStackViewForms/INSStackViewFormViewController.h; sourceTree = "<group>"; };
 		64788DD81C39D9C700B4B872 /* INSStackViewFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INSStackViewFormViewController.m; path = ../../INSStackViewForms/INSStackViewFormViewController.m; sourceTree = "<group>"; };
+		64D6AD571C40541B0094FA34 /* INSStackViewTextFieldElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSStackViewTextFieldElement.h; sourceTree = "<group>"; };
+		64D6AD581C40541B0094FA34 /* INSStackViewTextFieldElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSStackViewTextFieldElement.m; sourceTree = "<group>"; };
 		DBCC4314E2A9F6F978E8BB22 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +112,8 @@
 			children = (
 				641F67A01C3DB0E5006752DE /* INSStackViewLabelElement.h */,
 				641F67A11C3DB0E5006752DE /* INSStackViewLabelElement.m */,
+				64D6AD571C40541B0094FA34 /* INSStackViewTextFieldElement.h */,
+				64D6AD581C40541B0094FA34 /* INSStackViewTextFieldElement.m */,
 			);
 			name = Elements;
 			path = ../../INSStackViewForms/Elements;
@@ -320,6 +325,7 @@
 				64788DC31C39C22F00B4B872 /* HideView.m in Sources */,
 				64788DDC1C39D9C700B4B872 /* INSStackViewFormViewController.m in Sources */,
 				64788DC81C39C91300B4B872 /* SectionHeaderView.m in Sources */,
+				64D6AD591C40541B0094FA34 /* INSStackViewTextFieldElement.m in Sources */,
 				64788D9B1C39A07D00B4B872 /* main.m in Sources */,
 				641F67A21C3DB0E5006752DE /* INSStackViewLabelElement.m in Sources */,
 				64788DDA1C39D9C700B4B872 /* INSStackViewFormSection.m in Sources */,

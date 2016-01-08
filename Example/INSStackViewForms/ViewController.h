@@ -10,7 +10,7 @@
 #import "INSStackViewFormViewController.h"
 #import "INSOAStackViewFormViewController.h"
 
-@interface ViewController : INSOAStackViewFormViewController
+@interface ViewController : INSStackViewFormViewController
 
 
 @end

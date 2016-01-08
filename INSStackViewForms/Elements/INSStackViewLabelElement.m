@@ -41,7 +41,7 @@
                                                                               attribute:NSLayoutAttributeCenterY
                                                                              multiplier:1.f constant:0.f]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[_textLabel]"
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_textLabel]"
                                                                      options:0
                                                                      metrics:nil
                                                                        views:NSDictionaryOfVariableBindings(_textLabel)]];

@@ -28,7 +28,7 @@
 #import "INSStackViewFormItem.h"
 
 typedef NS_ENUM(NSInteger, INSStackViewFormViewAccessoryType) {
-    INSStackViewFormViewAccessoryNone,    // don't show any accessory view
+    INSStackViewFormViewAccessoryNone,    // clear accessory view
     INSStackViewFormViewAccessoryDisclosureIndicator
 };
 
