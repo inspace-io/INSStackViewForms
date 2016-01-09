@@ -24,6 +24,9 @@
 //  THE SOFTWARE.
 
 @import UIKit;
+
+@class INSStackFormView;
+
 #import "INSStackFormSection.h"
 #import "INSStackFormItem.h"
 
@@ -33,6 +36,7 @@ typedef NS_ENUM(NSInteger, INSStackFormViewBaseElementAccessoryType) {
 };
 
 @interface INSStackFormViewBaseElement : UIControl
+@property (nonatomic, strong, readonly) INSStackFormView *stackFormView;
 @property (nonatomic, strong, readonly) INSStackFormSection *section;
 @property (nonatomic, strong, readonly) INSStackFormItem *item;
 

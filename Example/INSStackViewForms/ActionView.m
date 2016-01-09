@@ -16,7 +16,7 @@
         [self ins_loadContentsFromNib];
         
         UIView *selectedView = [[UIView alloc] initWithFrame:CGRectZero];
-        selectedView.backgroundColor = [UIColor darkGrayColor];
+        selectedView.backgroundColor = [UIColor lightGrayColor];
         self.selectedBackgroundView = selectedView;
     }
     return self;

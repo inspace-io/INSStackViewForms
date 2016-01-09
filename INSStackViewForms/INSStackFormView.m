@@ -129,6 +129,17 @@
 
 #pragma mark - Public
 
+- (INSStackFormItem *)firstItemWithIdentifier:(NSString *)identifier {
+    for (INSStackFormSection *section in self.sections) {
+        for (INSStackFormItem *item in section.items) {
+            if ([item.identifier isEqualToString:identifier]) {
+                return item;
+            }
+        }
+    }
+    return nil;
+}
+
 - (INSStackFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackFormSection *)section {
     for (INSStackFormItem *item in section.items) {
         if ([item.identifier isEqualToString:identifier]) {
@@ -361,6 +372,7 @@
     
     if ([itemView isKindOfClass:[INSStackFormViewBaseElement class]]) {
         INSStackFormViewBaseElement *formView = (INSStackFormViewBaseElement *)itemView;
+        formView.stackFormView = self;
         formView.section = section;
         formView.item = item;
         [formView configure];
@@ -401,21 +413,43 @@
     __block BOOL isValid = YES;
     
     [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection *section, NSUInteger idx, BOOL * _Nonnull stop) {
-        [section.items enumerateObjectsUsingBlock:^(INSStackFormItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (item.validationBlock) {
-                NSString *errorMessage = nil;
-                BOOL isItemValid = item.validationBlock([self viewForItem:item inSection:section],item,&errorMessage);
-                if (!isItemValid) {
-                    NSAssert(errorMessage != nil, @"If item is not valid, you must provide error message");
-                    [errors addObject:errorMessage];
-                    isValid = NO;
-                }
-            }
-        }];
-        
+        NSArray *sectionErrors = nil;
+        BOOL sectionValid = [self validateSection:section errorMessages:&sectionErrors];
+        if (isValid) {
+            isValid = sectionValid;
+        }
+        [errors addObjectsFromArray:sectionErrors];
     }];
     
     *errorMessages = [errors copy];
     return isValid;
 }
+
+- (BOOL)validateSection:(INSStackFormSection *)section errorMessages:(NSArray <NSString *> * __autoreleasing *)errorMessages {
+    NSMutableArray *errors = [NSMutableArray array];
+    __block BOOL isValid = YES;
+    
+    NSMutableArray *items = [section.items mutableCopy] ?: [@[] mutableCopy];
+    if (section.headerItem) {
+        [items insertObject:section.headerItem atIndex:0];
+    }
+    if (section.footerItem) {
+        [items addObject:section.footerItem];
+    }
+    
+    [items enumerateObjectsUsingBlock:^(INSStackFormItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (item.validationBlock) {
+            NSString *errorMessage = nil;
+            BOOL isItemValid = item.validationBlock([self viewForItem:item inSection:section],item,&errorMessage);
+            if (!isItemValid) {
+                NSAssert(errorMessage != nil, @"If item is not valid, you must provide error message");
+                [errors addObject:errorMessage];
+                isValid = NO;
+            }
+        }
+    }];
+    *errorMessages = [errors copy];
+    return isValid;
+}
+
 @end

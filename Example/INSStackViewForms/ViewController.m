@@ -95,11 +95,62 @@
         
         [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
             builder.itemClass = [INSStackFormViewTextFieldElement class];
-            builder.title = nil;
+            builder.title = @"Name";
             builder.subtitle = nil;
             builder.height = @50;
             builder.configurationBlock = ^(INSStackFormViewTextFieldElement *view) {
-                view.textField.placeholder = @"Placeholder";
+                view.textField.placeholder = @"Name";
+            };
+        }];
+        
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewTextFieldElement class];
+            builder.title = @"Last Name";
+            builder.subtitle = nil;
+            builder.height = @50;
+            builder.configurationBlock = ^(INSStackFormViewTextFieldElement *view) {
+                view.textField.placeholder = @"Last Name";
+            };
+        }];
+        
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewTextFieldElement class];
+            builder.identifier = @"Phone";
+            builder.title = @"Phone";
+            builder.subtitle = nil;
+            builder.height = @50;
+            builder.configurationBlock = ^(INSStackFormViewTextFieldElement *view) {
+                view.textField.placeholder = @"Phone";
+                view.textField.keyboardType = UIKeyboardTypePhonePad;
+            };
+        }];
+        
+        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
+            builder.itemClass = [INSStackFormViewLabelElement class];
+            builder.title = @"Section Validation Test !";
+            builder.height = @50;
+            builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
+                NSArray *errors = nil;
+                if (![view.stackFormView validateSection:view.section errorMessages:&errors]) {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[errors firstObject] preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                    }]];
+                    [weakSelf presentViewController:alert animated:YES completion:nil];
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Success" message:@"Section Valid!" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                    }]];
+                    [weakSelf presentViewController:alert animated:YES completion:nil];
+                }
+            };
+            builder.validationBlock = ^BOOL(__kindof INSStackFormViewBaseElement *view, INSStackFormItem *item, NSString **errorMessage) {
+                if (![view.stackFormView firstItemWithIdentifier:@"Phone"].value) {
+                    *errorMessage = @"Phone number can't be nil";
+                    return NO;
+                }
+                return YES;
             };
         }];
         
