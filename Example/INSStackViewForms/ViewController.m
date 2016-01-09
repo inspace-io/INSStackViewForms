@@ -26,7 +26,7 @@
     
     [super viewDidLoad];
 
-//    self.stackFormView.dataSource = self;
+    self.stackFormView.dataSource = self;
     // Do any additional setup after loading the view, typically from a nib.
     
     INSStackFormItem *item = [[INSStackFormItem alloc] init];
@@ -41,32 +41,7 @@
         [weakSelf.stackFormView removeItem:view.item fromSection:view.section animated:NO completion:nil];
     };
     
-//    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
-    
-    [self.stackFormView addSection:[INSStackFormSection sectionWithBuilder:^(INSStackFormSection *sectionBuilder) {
-        
-        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
-            builder.itemClass = [CustomView class];
-            builder.userInteractionEnabled = NO;
-            builder.height = nil; // dynamic height
-            builder.configurationBlock = ^(CustomView *view) {
-                view.backgroundColor = [UIColor whiteColor];
-            };
-        }];
-        
-        [sectionBuilder addItemWithBuilder:^(INSStackFormItem *builder) {
-            builder.itemClass = [INSStackFormViewLabelElement class];
-            builder.height = @50;
-            builder.title = @"Title of text label";
-            builder.configurationBlock = ^(INSStackFormViewLabelElement *view) {
-                view.backgroundColor = [UIColor whiteColor];
-                view.textLabel.textColor = [UIColor redColor];
-            };
-            builder.actionBlock = ^(INSStackFormViewLabelElement *view) {
-                NSLog(@"ACTION");
-            };
-        }];
-    }]];
+    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
 }
 
 - (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView {

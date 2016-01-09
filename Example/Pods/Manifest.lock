@@ -1,10 +1,13 @@
 PODS:
   - INSNibLoading (1.0.0)
+  - TPKeyboardAvoiding (1.2.11)
 
 DEPENDENCIES:
   - INSNibLoading
+  - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   INSNibLoading: 8fe16319badd041a0aa68dfed080f2157ac4c8ce
+  TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
 
 COCOAPODS: 0.39.0

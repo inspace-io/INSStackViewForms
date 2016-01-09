@@ -37,6 +37,7 @@
         self.textField.backgroundColor = [UIColor clearColor];
         self.textField.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
         self.textField.textColor = [UIColor blackColor];
+        self.textField.delegate = self;
         self.textField.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
@@ -131,6 +132,9 @@
     }
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end
