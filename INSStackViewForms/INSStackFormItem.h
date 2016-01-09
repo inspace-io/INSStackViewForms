@@ -27,20 +27,20 @@
 
 @class INSStackFormItem;
 
-typedef void(^INSStackFormItemBlock)(__kindof UIView *item);
-typedef BOOL(^INSStackFormItemValidationBlock)(__kindof UIView *view, INSStackFormItem *item, NSString **errorMessage);
+typedef void(^INSStackFormItemBlock)(__kindof UIView * __nonnull item);
+typedef BOOL(^INSStackFormItemValidationBlock)(__kindof UIView * __nullable view, INSStackFormItem * __nonnull item, NSString * __nullable * __nullable errorMessage);
 
 @interface INSStackFormItem : NSObject
-@property (nonatomic, strong) Class itemClass;
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, strong) id value;
+@property (nonatomic, strong, nonnull) Class itemClass;
+@property (nonatomic, copy, nullable) NSString *identifier;
+@property (nonatomic, copy, nullable) NSString *title;
+@property (nonatomic, copy, nullable) NSString *subtitle;
+@property (nonatomic, strong, nullable) id value;
 @property (nonatomic, assign) BOOL userInteractionEnabled;
-@property (nonatomic, copy) NSNumber *height;
+@property (nonatomic, copy, nullable) NSNumber *height;
 
-@property (nonatomic, copy) INSStackFormItemBlock configurationBlock;
-@property (nonatomic, copy) INSStackFormItemBlock actionBlock;
-@property (nonatomic, copy) INSStackFormItemValidationBlock validationBlock;
+@property (nonatomic, copy, nullable) INSStackFormItemBlock configurationBlock;
+@property (nonatomic, copy, nullable) INSStackFormItemBlock actionBlock;
+@property (nonatomic, copy, nullable) INSStackFormItemValidationBlock validationBlock;
 
 @end

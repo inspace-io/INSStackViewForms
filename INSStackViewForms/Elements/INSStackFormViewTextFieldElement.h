@@ -9,8 +9,8 @@
 #import "INSStackFormViewBaseElement.h"
 
 @interface INSStackFormViewTextFieldElement : INSStackFormViewBaseElement
-@property (nonatomic, strong, readonly) UILabel *textLabel;
-@property (nonatomic, strong, readonly) UITextField *textField;
+@property (nonatomic, strong, readonly, nonnull) UILabel *textLabel;
+@property (nonatomic, strong, readonly, nonnull) UITextField *textField;
 
-@property (nonatomic, strong) NSNumber *textFieldLengthPercentage;
+@property (nonatomic, strong, nullable) NSNumber *textFieldLengthPercentage;
 @end

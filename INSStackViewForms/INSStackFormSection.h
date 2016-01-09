@@ -26,25 +26,23 @@
 #import "INSStackFormItem.h"
 
 @interface INSStackFormSection : NSObject
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, copy) NSNumber *headerHeight;
-@property (nonatomic, copy) NSNumber *footerHeight;
+@property (nonatomic, copy, nullable) NSString *identifier;
 
-@property (nonatomic, strong) INSStackFormItem *headerItem;
-@property (nonatomic, strong) INSStackFormItem *footerItem;
+@property (nonatomic, strong, nullable) INSStackFormItem *headerItem;
+@property (nonatomic, strong, nullable) INSStackFormItem *footerItem;
 
 @property (nonatomic, assign) BOOL showItemSeparators;
 @property (nonatomic, assign) UIEdgeInsets separatorInset;
 
-@property (nonatomic, readonly) NSArray <INSStackFormItem *> *items;
+@property (nonatomic, readonly, nonnull) NSArray <INSStackFormItem *> *items;
 
-- (INSStackFormItem *)addFooterWithBuilder:(void(^)(INSStackFormItem *builder))block;
-- (INSStackFormItem *)addHeaderWithBuilder:(void(^)(INSStackFormItem *builder))block;
-- (INSStackFormItem *)addItemWithBuilder:(void(^)(INSStackFormItem *builder))block;
+- (nonnull INSStackFormItem *)addFooterWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;
+- (nonnull INSStackFormItem *)addHeaderWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;
+- (nonnull INSStackFormItem *)addItemWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;
 
-- (void)addItem:(INSStackFormItem *)item;
-- (void)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index;
-- (void)removeItem:(INSStackFormItem *)item;
+- (void)addItem:(nonnull INSStackFormItem *)item;
+- (void)insertItem:(nonnull INSStackFormItem *)item atIndex:(NSUInteger)index;
+- (void)removeItem:(nonnull INSStackFormItem *)item;
 
-+ (instancetype)sectionWithBuilder:(void(^)(INSStackFormSection *sectionBuilder))block;
++ (nonnull instancetype)sectionWithBuilder:(nonnull void(^)(INSStackFormSection * __nonnull sectionBuilder))block;
 @end

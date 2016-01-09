@@ -30,7 +30,7 @@
 @class INSStackFormView;
 
 @protocol INSStackViewFormViewDateSource <NSObject>
-- (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView;
+- (nullable NSArray <INSStackFormSection *> *)sectionsForStackFormView:(nonnull INSStackFormView *)stackViewFormView;
 @end
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_0 && __has_include("OAStackView.h") || __has_include(<OAStackView/OAStackView.h>)
@@ -46,7 +46,7 @@
 @interface INSStackFormView : UIStackView
 #endif
 
-@property (nonatomic, strong, readonly) NSArray <INSStackFormSection *> *sections;
+@property (nonatomic, strong, readonly, nonnull) NSArray <INSStackFormSection *> *sections;
 
 @property (nonatomic, weak) id <INSStackViewFormViewDateSource> dataSource;
 
@@ -63,44 +63,44 @@
 /**
  *  Returns item and section for specified identifier.
  */
-- (INSStackFormItem *)firstItemWithIdentifier:(NSString *)identifier;
-- (INSStackFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackFormSection *)section;
-- (INSStackFormSection *)sectionWithIdentifier:(NSString *)identifier;
+- (nullable INSStackFormItem *)firstItemWithIdentifier:(nonnull NSString *)identifier;
+- (nullable INSStackFormItem *)itemWithIdentifier:(nonnull NSString *)identifier inSection:(nonnull INSStackFormSection *)section;
+- (nullable INSStackFormSection *)sectionWithIdentifier:(nonnull NSString *)identifier;
 
 /**
  *  Returns equivalent views for specified section or item.
  */
-- (NSArray <__kindof UIView *> *)viewsForSection:(INSStackFormSection *)section;
-- (__kindof UIView *)viewForItem:(INSStackFormItem *)item inSection:(INSStackFormSection *)section;
+- (nullable NSArray <__kindof UIView *> *)viewsForSection:(nonnull INSStackFormSection *)section;
+- (nullable __kindof UIView *)viewForItem:(nonnull INSStackFormItem *)item inSection:(nonnull INSStackFormSection *)section;
 
 /**
  *  Deletes the view specified by an item in section, with an option to animate the deletion.
  */
-- (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
-- (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section;
+- (void)removeItem:(nonnull INSStackFormItem *)item fromSection:(nonnull INSStackFormSection *)section animated:(BOOL)animated completion:(nullable void(^)())completion;
+- (void)removeItem:(nonnull INSStackFormItem *)item fromSection:(nonnull INSStackFormSection *)section;
 
 /**
  *   Adds the view specified by an item in section.
  */
-- (__kindof UIView *)addItem:(INSStackFormItem *)item toSection:(INSStackFormSection *)section;
-- (__kindof UIView *)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackFormSection *)section;
+- (nonnull __kindof UIView *)addItem:(nonnull INSStackFormItem *)item toSection:(nonnull INSStackFormSection *)section;
+- (nonnull __kindof UIView *)insertItem:(nonnull INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(nonnull INSStackFormSection *)section;
 
 /**
  *  Deletes all views specified by an section, with an option to animate the deletion.
  */
-- (void)removeSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion;
-- (void)removeSection:(INSStackFormSection *)section;
+- (void)removeSection:(nonnull INSStackFormSection *)section animated:(BOOL)animated completion:(nullable void(^)())completion;
+- (void)removeSection:(nonnull INSStackFormSection *)section;
 
 /**
  *  Adds all views specified by section.
  */
-- (NSArray <__kindof UIView *> *)addSection:(INSStackFormSection *)section;
-- (NSArray <__kindof UIView *> *)insertSection:(INSStackFormSection *)section atIndex:(NSUInteger)index;
+- (nonnull NSArray <__kindof UIView *> *)addSection:(nonnull INSStackFormSection *)section;
+- (nonnull NSArray <__kindof UIView *> *)insertSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
 
 /**
  *  Call validationBlock on each items for each sections
  */
-- (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages;
-- (BOOL)validateSection:(INSStackFormSection *)section errorMessages:(NSArray <NSString *> * __autoreleasing *)errorMessages;
+- (BOOL)validateDataItems:(NSArray <NSString *> * __nullable __autoreleasing * __nullable)errorMessages;
+- (BOOL)validateSection:(nonnull INSStackFormSection *)section errorMessages:(NSArray <NSString *> * __nullable __autoreleasing * __nullable)errorMessages;
 
 @end

@@ -54,6 +54,8 @@
 #pragma mark - Initial Configuration
 
 - (void)configureStackView {
+    self.sections = @[];
+    
     self.axis = UILayoutConstraintAxisVertical;
     self.distribution = 0;
     self.alignment = 0;
@@ -62,7 +64,7 @@
 #pragma mark - Subclass
 
 - (NSArray <INSStackFormSection *> *)initialCollectionSections {
-    return [self.dataSource sectionsForStackFormView:self];
+    return [self.dataSource sectionsForStackFormView:self] ?: @[];
 }
 
 #pragma mark - Reload
@@ -252,20 +254,20 @@
 }
 
 - (__kindof UIView *)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackFormSection *)section {
+    NSAssert([self.sections containsObject:section], @"You are trying to insert item to section which don't exist");
+    
     NSUInteger sectionIndex = [self.sections indexOfObject:section];
-    if (sectionIndex != NSNotFound) {
-        NSInteger startIndex = sectionIndex <= 0 ? 0 : [self startIndexForSection:section];
-        [section insertItem:item atIndex:index];
-        
-        UIView *itemView = [[item.itemClass alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, [item.height doubleValue])];
-        [self configureItemView:itemView forItem:item section:section];
-        
-        [self insertArrangedSubview:itemView atIndex:startIndex + index];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==stackView)]|" options:0 metrics:nil views:@{@"stackView": self, @"itemView": itemView}]];
-        
-        return itemView;
-    }
-    return nil;
+
+    NSInteger startIndex = sectionIndex <= 0 ? 0 : [self startIndexForSection:section];
+    [section insertItem:item atIndex:index];
+    
+    UIView *itemView = [[item.itemClass alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, [item.height doubleValue])];
+    [self configureItemView:itemView forItem:item section:section];
+    
+    [self insertArrangedSubview:itemView atIndex:startIndex + index];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==stackView)]|" options:0 metrics:nil views:@{@"stackView": self, @"itemView": itemView}]];
+    
+    return itemView;
 }
 
 

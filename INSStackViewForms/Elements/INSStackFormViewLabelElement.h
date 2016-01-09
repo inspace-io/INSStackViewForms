@@ -9,6 +9,6 @@
 #import "INSStackFormViewBaseElement.h"
 
 @interface INSStackFormViewLabelElement : INSStackFormViewBaseElement
-@property (nonatomic, readonly, strong) UILabel *textLabel;
-@property (nonatomic, readonly, strong) UILabel *detailTextLabel;
+@property (nonatomic, readonly, strong, nonnull) UILabel *textLabel;
+@property (nonatomic, readonly, strong, nonnull) UILabel *detailTextLabel;
 @end

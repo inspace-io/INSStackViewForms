@@ -36,24 +36,24 @@ typedef NS_ENUM(NSInteger, INSStackFormViewBaseElementAccessoryType) {
 };
 
 @interface INSStackFormViewBaseElement : UIControl
-@property (nonatomic, strong, readonly) INSStackFormView *stackFormView;
-@property (nonatomic, strong, readonly) INSStackFormSection *section;
-@property (nonatomic, strong, readonly) INSStackFormItem *item;
+@property (nonatomic, strong, readonly, nullable) INSStackFormView *stackFormView;
+@property (nonatomic, strong, readonly, nullable) INSStackFormSection *section;
+@property (nonatomic, strong, readonly, nullable) INSStackFormItem *item;
 
-@property (nonatomic, readonly, strong) UIView *contentView;
-@property (nonatomic, strong) UIView *accessoryView;
+@property (nonatomic, readonly, strong, nonnull) UIView *contentView;
+@property (nonatomic, strong, nullable) UIView *accessoryView;
 @property (nonatomic, assign) INSStackFormViewBaseElementAccessoryType accesoryType;
 
-@property (nonatomic, strong) UIView *selectedBackgroundView;
+@property (nonatomic, strong, nullable) UIView *selectedBackgroundView;
 
 @property (nonatomic, assign) IBInspectable CGFloat delimiterLineHeight;
 
-@property (nonatomic, strong) IBInspectable UIColor *delimiterColor;
+@property (nonatomic, strong, null_resettable) IBInspectable UIColor *delimiterColor;
 
-@property (nonatomic, strong) IBInspectable UIColor *topDelimiterColor;
-@property (nonatomic, strong) IBInspectable UIColor *bottomDelimiterColor;
-@property (nonatomic, strong) IBInspectable UIColor *leftDelimiterColor;
-@property (nonatomic, strong) IBInspectable UIColor *rightDelimiterColor;
+@property (nonatomic, strong, null_resettable) IBInspectable UIColor *topDelimiterColor;
+@property (nonatomic, strong, null_resettable) IBInspectable UIColor *bottomDelimiterColor;
+@property (nonatomic, strong, null_resettable) IBInspectable UIColor *leftDelimiterColor;
+@property (nonatomic, strong, null_resettable) IBInspectable UIColor *rightDelimiterColor;
 
 @property (nonatomic, assign) UIEdgeInsets topDelimiterInset;
 @property (nonatomic, assign) UIEdgeInsets bottomDelimiterInset;
