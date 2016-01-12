@@ -25,16 +25,48 @@
 
 #import "INSStackFormView.h"
 #import "INSStackFormViewBaseElement_Private.h"
+#import "INSStackFormViewUpdateItem.h"
 
 @interface INSStackFormView ()
 @property (nonatomic, strong) NSArray <INSStackFormSection *> *sections;
+@property (nonatomic, assign) BOOL itemCountsAreValid;
+@property (nonatomic, assign, getter=isUpdating) BOOL updating;
+
+@property (nonatomic, strong) NSMutableArray *insertItems;
+@property (nonatomic, strong) NSMutableArray *deleteItems;
+@property (nonatomic, strong) NSMutableArray *reloadItems;
+@property (nonatomic, strong) NSMutableArray *moveItems;
 @end
 
 @implementation INSStackFormView
 
-- (void)setDataSource:(id<INSStackViewFormViewDateSource>)dataSource {
-    _dataSource = dataSource;
-    [self reloadData];
+- (NSArray <INSStackFormSection *> *)sections {
+    [self validateLayout];
+    return _sections;
+}
+- (NSMutableArray *)arrayForUpdateAction:(INSStackFormViewUpdateAction)updateAction {
+    NSMutableArray *updateActions = nil;
+    
+    switch (updateAction) {
+        case INSStackFormViewUpdateActionInsert:
+            if (!_insertItems) _insertItems = [NSMutableArray new];
+            updateActions = _insertItems;
+            break;
+        case INSStackFormViewUpdateActionDelete:
+            if (!_deleteItems) _deleteItems = [NSMutableArray new];
+            updateActions = _deleteItems;
+            break;
+        case INSStackFormViewUpdateActionMove:
+            if (!_moveItems) _moveItems = [NSMutableArray new];
+            updateActions = _moveItems;
+            break;
+        case INSStackFormViewUpdateActionReload:
+            if (!_reloadItems) _reloadItems = [NSMutableArray new];
+            updateActions = _reloadItems;
+            break;
+        default: break;
+    }
+    return updateActions;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -54,29 +86,36 @@
 #pragma mark - Initial Configuration
 
 - (void)configureStackView {
-    self.sections = @[];
+    _sections = @[];
     
     self.axis = UILayoutConstraintAxisVertical;
     self.distribution = 0;
     self.alignment = 0;
 }
 
-#pragma mark - Subclass
-
 - (NSArray <INSStackFormSection *> *)initialCollectionSections {
     return [self.dataSource sectionsForStackFormView:self] ?: @[];
 }
 
+#pragma mark - UIView
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self validateLayout];
+}
+
 #pragma mark - Reload
 
-- (void)reloadData {
-    self.sections = [self initialCollectionSections];
-    for (UIView *view in [self.arrangedSubviews copy]) {
-        [self removeArrangedSubview:view];
-        [view removeFromSuperview];
+- (void)validateLayout {
+    if (!self.itemCountsAreValid) {
+        [self loadData];
     }
+}
+
+- (void)loadData {
+    _sections = [self initialCollectionSections];
     
-    [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         if (section.headerItem) {
             [self intitializeAndAddItemViewForItem:section.headerItem section:section];
         }
@@ -87,12 +126,23 @@
             [self intitializeAndAddItemViewForItem:section.footerItem section:section];
         }
     }];
+    
+    self.itemCountsAreValid = YES;
+}
 
-    [self layoutIfNeeded];
+- (void)reloadData {
+    self.itemCountsAreValid = NO;
+    
+    for (UIView *view in [self.arrangedSubviews copy]) {
+        [self removeArrangedSubview:view];
+        [view removeFromSuperview];
+    }
+
+    [self setNeedsLayout];
 }
 
 - (void)refreshViews {
-    [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         
         __block NSInteger index = [self startIndexForSection:section];
         
@@ -112,11 +162,80 @@
     [self layoutIfNeeded];
 }
 
+- (void)refreshViewForItem:(INSStackFormItem *)item {
+    for (INSStackFormSection *section in _sections) {
+        __block NSInteger index = [self startIndexForSection:section];
+        
+        if (section.headerItem) {
+            if (section.headerItem == item) {
+                [self configureItemView:self.arrangedSubviews[index] forItem:section.headerItem section:section];
+            }
+            index++;
+        }
+        
+        for (INSStackFormItem *sectionItem in section.items) {
+            if (sectionItem == item) {
+                [self configureItemView:self.arrangedSubviews[index] forItem:sectionItem section:section];
+                return;
+            }
+            index++;
+        }
+        if (section.footerItem == item) {
+            [self configureItemView:self.arrangedSubviews[index] forItem:section.footerItem section:section];
+            return;
+        }
+    }
+    
+    [self layoutIfNeeded];
+}
+
+#pragma mark - Animate Changes
+
+- (void)beginUpdates {
+    self.updating = YES;
+}
+- (void)endUpdates {
+    
+}
+
+- (void)insertSections:(nonnull NSArray <INSStackFormSection *> *)sections {
+    [self updateSections:sections updateAction:INSStackFormViewUpdateActionInsert];
+}
+- (void)deleteSections:(nonnull NSArray <INSStackFormSection *> *)sections {
+    [self updateSections:sections updateAction:INSStackFormViewUpdateActionDelete];
+}
+- (void)reloadSections:(nonnull NSArray <INSStackFormSection *> *)sections {
+    [self updateSections:sections updateAction:INSStackFormViewUpdateActionReload];
+}
+- (void)moveSection:(nonnull INSStackFormSection *)section toIndex:(NSInteger)newSectionIndex {
+    
+}
+
+- (void)updateSections:(NSArray <INSStackFormSection *> *)sections updateAction:(INSStackFormViewUpdateAction)updateAction {
+    BOOL updating = self.updating;
+    if (!updating) {
+        [self beginUpdates];
+    }
+
+    NSMutableArray *updateActions = [self arrayForUpdateAction:updateAction];
+    
+    NSIndexSet *indexSet = [_sections indexesOfObjectsPassingTest:^BOOL(INSStackFormSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [sections containsObject:obj];
+    }];
+    
+    [indexSet enumerateIndexesUsingBlock:^(NSUInteger section, BOOL *stop) {
+        INSStackFormViewUpdateItem *updateItem = [[INSStackFormViewUpdateItem alloc] initWithAction:updateAction forIndexPath:[NSIndexPath indexPathForItem:NSNotFound inSection:(NSInteger)section]];
+        [updateActions addObject:updateItem];
+    }];
+    
+    if (!updating) [self endUpdates];
+}
+
 #pragma mark - Private
 
 - (NSUInteger)startIndexForSection:(INSStackFormSection *)searchingSection {
     NSUInteger index = 0;
-    for (INSStackFormSection *section in self.sections) {
+    for (INSStackFormSection *section in _sections) {
         if (section == searchingSection) {
             return index;
         }
@@ -132,7 +251,9 @@
 #pragma mark - Public
 
 - (INSStackFormItem *)firstItemWithIdentifier:(NSString *)identifier {
-    for (INSStackFormSection *section in self.sections) {
+    [self validateLayout];
+    
+    for (INSStackFormSection *section in _sections) {
         for (INSStackFormItem *item in section.items) {
             if ([item.identifier isEqualToString:identifier]) {
                 return item;
@@ -143,6 +264,8 @@
 }
 
 - (INSStackFormItem *)itemWithIdentifier:(NSString *)identifier inSection:(INSStackFormSection *)section {
+    [self validateLayout];
+    
     for (INSStackFormItem *item in section.items) {
         if ([item.identifier isEqualToString:identifier]) {
             return item;
@@ -152,7 +275,9 @@
 }
 
 - (INSStackFormSection *)sectionWithIdentifier:(NSString *)identifier {
-    for (INSStackFormSection *section in self.sections) {
+    [self validateLayout];
+    
+    for (INSStackFormSection *section in _sections) {
         if ([section.identifier isEqualToString:identifier]) {
             return section;
         }
@@ -161,7 +286,9 @@
 }
 
 - (NSArray <__kindof UIView *> *)viewsForSection:(INSStackFormSection *)section {
-    for (INSStackFormSection *object in self.sections) {
+    [self validateLayout];
+    
+    for (INSStackFormSection *object in _sections) {
         if (object == section) {
             NSInteger startIndex = [self startIndexForSection:section];
             NSInteger itemCount = object.items.count;
@@ -178,7 +305,9 @@
 }
 
 - (__kindof UIView *)viewForItem:(INSStackFormItem *)item inSection:(INSStackFormSection *)section {
-    for (INSStackFormSection *object in self.sections) {
+    [self validateLayout];
+    
+    for (INSStackFormSection *object in _sections) {
         if (object == section) {
             NSInteger startIndex = [self startIndexForSection:section];
             if (object.headerItem) {
@@ -196,6 +325,8 @@
 }
 
 - (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
+    [self validateLayout];
+    
     if (animated) {
         UIView *viewForItem = [self viewForItem:item inSection:section];
         [self sendSubviewToBack:viewForItem];
@@ -218,7 +349,9 @@
 }
 
 - (void)removeItem:(INSStackFormItem *)item fromSection:(INSStackFormSection *)section {
-    [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self validateLayout];
+    
+    [_sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSInteger startIndex = [self startIndexForSection:section];
         
@@ -254,9 +387,11 @@
 }
 
 - (__kindof UIView *)insertItem:(INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(INSStackFormSection *)section {
-    NSAssert([self.sections containsObject:section], @"You are trying to insert item to section which don't exist");
+    [self validateLayout];
     
-    NSUInteger sectionIndex = [self.sections indexOfObject:section];
+    NSAssert([_sections containsObject:section], @"You are trying to insert item to section which don't exist");
+    
+    NSUInteger sectionIndex = [_sections indexOfObject:section];
 
     NSInteger startIndex = sectionIndex <= 0 ? 0 : [self startIndexForSection:section];
     [section insertItem:item atIndex:index];
@@ -272,6 +407,8 @@
 
 
 - (void)removeSection:(INSStackFormSection *)section animated:(BOOL)animated completion:(void(^)())completion {
+    [self validateLayout];
+    
     if (animated) {
         NSArray <UIView *> *subviews = [self viewsForSection:section];
         [[subviews.reverseObjectEnumerator allObjects] enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -298,8 +435,10 @@
 }
 
 - (void)removeSection:(INSStackFormSection *)section {
-    NSMutableArray *mutableSections = [self.sections mutableCopy];
-    [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self validateLayout];
+    
+    NSMutableArray *mutableSections = [_sections mutableCopy];
+    [_sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj == section) {
             NSArray *subviews = [self viewsForSection:section];
             for (UIView *view in subviews) {
@@ -311,15 +450,17 @@
             *stop = YES;
         }
     }];
-    self.sections = [mutableSections copy];
+    _sections = [mutableSections copy];
 }
 - (NSArray <__kindof UIView *> *)addSection:(INSStackFormSection *)section {
-    return [self insertSection:section atIndex:self.sections.count];
+    return [self insertSection:section atIndex:_sections.count];
 }
 - (NSArray <__kindof UIView *> *)insertSection:(INSStackFormSection *)section atIndex:(NSUInteger)index {
-    NSMutableArray *mutableSections = [self.sections mutableCopy];
+    [self validateLayout];
+    
+    NSMutableArray *mutableSections = [_sections mutableCopy];
     [mutableSections insertObject:section atIndex:index];
-    self.sections = [mutableSections copy];
+    _sections = [mutableSections copy];
     
     __block NSUInteger startIndex = [self startIndexForSection:section];
     
@@ -411,10 +552,12 @@
 #pragma mark - Validation
 
 - (BOOL)validateDataItems:(NSArray <NSString *> * __autoreleasing *)errorMessages {
+    [self validateLayout];
+    
     NSMutableArray *errors = [NSMutableArray array];
     __block BOOL isValid = YES;
     
-    [self.sections enumerateObjectsUsingBlock:^(INSStackFormSection *section, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_sections enumerateObjectsUsingBlock:^(INSStackFormSection *section, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray *sectionErrors = nil;
         BOOL sectionValid = [self validateSection:section errorMessages:&sectionErrors];
         if (isValid) {
@@ -428,6 +571,8 @@
 }
 
 - (BOOL)validateSection:(INSStackFormSection *)section errorMessages:(NSArray <NSString *> * __autoreleasing *)errorMessages {
+    [self validateLayout];
+    
     NSMutableArray *errors = [NSMutableArray array];
     __block BOOL isValid = YES;
     

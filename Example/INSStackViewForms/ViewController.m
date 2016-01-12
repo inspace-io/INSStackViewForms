@@ -41,7 +41,8 @@
         [weakSelf.stackFormView removeItem:view.item fromSection:view.section animated:NO completion:nil];
     };
     
-    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
+//    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
+    [self.stackFormView  deleteSections:@[self.stackFormView.sections[0]]];
 }
 
 - (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView {

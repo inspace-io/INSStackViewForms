@@ -56,9 +56,27 @@
 - (void)reloadData;
 
 /**
+ *  Changes
+ */
+
+- (void)beginUpdates;
+- (void)endUpdates;
+
+- (void)insertSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)deleteSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)reloadSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)moveSection:(nonnull INSStackFormSection *)section toIndex:(NSInteger)newSectionIndex;
+
+- (void)insertItems:(nonnull NSArray <INSStackFormItem *> *)items toSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
+- (void)deleteItems:(nonnull NSArray <INSStackFormItem *> *)items;
+- (void)reloadItems:(nonnull NSArray <INSStackFormItem *> *)items;
+- (void)moveItems:(nonnull NSArray <INSStackFormItem *> *)items toSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
+
+/**
  *  Recompute the display of the stack form view.
  */
 - (void)refreshViews;
+- (void)refreshViewForItem:(nonnull INSStackFormItem *)item;
 
 /**
  *  Returns item and section for specified identifier.
