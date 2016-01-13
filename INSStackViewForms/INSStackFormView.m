@@ -214,9 +214,7 @@
 }
 
 - (void)endUpdatesWithCompletion:(void(^)())completion {
-    
-    NSArray <INSStackFormSection *> *oldSections = self.sections;
-    
+
     NSMutableArray *sortedMutableRefreshItems = [[self.refreshItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
     NSMutableArray *sortedMutableReloadItems = [[self.reloadItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
     NSMutableArray *sortedMutableMoveItems = [[self.moveItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
@@ -224,25 +222,25 @@
     NSMutableArray *sortedInsertMutableItems = [[self.insertItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
     
     for (INSStackFormViewUpdateItem *updateItem in sortedMutableReloadItems) {
-        NSAssert(updateItem.indexPathBeforeUpdate.section < [oldSections count],
+        NSAssert(updateItem.indexPathBeforeUpdate.section < [_sections count],
                  @"attempt to reload item (%@) that doesn't exist (there are only %ld sections before update)",
-                 updateItem.indexPathBeforeUpdate, (long)[oldSections count]);
+                 updateItem.indexPathBeforeUpdate, (long)[_sections count]);
         
         if (updateItem.indexPathBeforeUpdate.item != NSNotFound) {
-            NSAssert(updateItem.indexPathBeforeUpdate.item < oldSections[updateItem.indexPathBeforeUpdate.section].items.count,
+            NSAssert(updateItem.indexPathBeforeUpdate.item < _sections[updateItem.indexPathBeforeUpdate.section].items.count,
                      @"attempt to reload item (%@) that doesn't exist (there are only %ld items in section %ld before update)",
                      updateItem.indexPathBeforeUpdate,
-                     (long)oldSections[updateItem.indexPathBeforeUpdate.section].items.count,
+                     (long)_sections[updateItem.indexPathBeforeUpdate.section].items.count,
                      (long)updateItem.indexPathBeforeUpdate.section);
         }
     }
     
     for (INSStackFormViewUpdateItem *deleteItem in sortedDeletedMutableItems) {
         if ([deleteItem isSectionOperation]) {
-            NSAssert(deleteItem.indexPathBeforeUpdate.section < [oldSections count],
+            NSAssert(deleteItem.indexPathBeforeUpdate.section < [_sections count],
                      @"attempt to delete section (%ld) that doesn't exist (there are only %ld sections before update)",
                      (long)deleteItem.indexPathBeforeUpdate.section,
-                     (long)[oldSections count]);
+                     (long)[_sections count]);
             
             for (INSStackFormViewUpdateItem *moveItem in sortedMutableMoveItems) {
                 if (moveItem.indexPathBeforeUpdate.section == deleteItem.indexPathBeforeUpdate.section) {
@@ -253,20 +251,22 @@
                 }
             }
         }else {
-            NSAssert(deleteItem.indexPathBeforeUpdate.section < [oldSections count],
+            NSAssert(deleteItem.indexPathBeforeUpdate.section < [_sections count],
                      @"attempt to delete item (%@) that doesn't exist (there are only %ld sections before update)",
                      deleteItem.indexPathBeforeUpdate,
-                     (long)[oldSections count]);
-            NSAssert(deleteItem.indexPathBeforeUpdate.item < oldSections[deleteItem.indexPathBeforeUpdate.section].items.count,
+                     (long)[_sections count]);
+            NSAssert(deleteItem.indexPathBeforeUpdate.item < _sections[deleteItem.indexPathBeforeUpdate.section].items.count,
                      @"attempt to delete item (%@) that doesn't exist (there are only %ld items in section%ld before update)",
                      deleteItem.indexPathBeforeUpdate,
-                     (long)oldSections[deleteItem.indexPathBeforeUpdate.section].items.count,
+                     (long)_sections[deleteItem.indexPathBeforeUpdate.section].items.count,
                      (long)deleteItem.indexPathBeforeUpdate.section);
-            
+#pragma clang diagnostic push 
+#pragma clang diagnostic ignored "-Wunused-variable"
             for (INSStackFormViewUpdateItem *moveItem in sortedMutableMoveItems) {
                 NSAssert(![deleteItem.indexPathBeforeUpdate isEqual:moveItem.indexPathBeforeUpdate],
                          @"attempt to delete and move the same item (%@)", deleteItem.indexPathBeforeUpdate);
             }
+#pragma clang diagnostic pop
         }
     }
     
@@ -285,32 +285,32 @@
             }
             
         }else {
-            NSAssert(indexPath.item < oldSections[indexPath.section].items.count,
+            NSAssert(indexPath.item < _sections[indexPath.section].items.count,
                      @"attempt to insert item to (%@) but there are only %ld items in section %ld after update",
                      indexPath,
-                     (long)oldSections[indexPath.section].items.count,
+                     (long)_sections[indexPath.section].items.count,
                      (long)indexPath.section);
         }
     }
     
     for (INSStackFormViewUpdateItem *sortedItem in sortedMutableMoveItems) {
         if (sortedItem.isSectionOperation) {
-            NSAssert(sortedItem.indexPathBeforeUpdate.section < [oldSections count],
+            NSAssert(sortedItem.indexPathBeforeUpdate.section < [_sections count],
                      @"attempt to move section (%ld) that doesn't exist (%ld sections before update)",
                      (long)sortedItem.indexPathBeforeUpdate.section,
-                     (long)[oldSections count]);
-            NSAssert(sortedItem.indexPathAfterUpdate.section < [oldSections count],
+                     (long)[_sections count]);
+            NSAssert(sortedItem.indexPathAfterUpdate.section < [_sections count],
                      @"attempt to move section to %ld but there are only %ld sections after update",
                      (long)sortedItem.indexPathAfterUpdate.section,
-                     (long)[oldSections count]);
+                     (long)[_sections count]);
         }else {
-            NSAssert(sortedItem.indexPathBeforeUpdate.section < [oldSections count],
+            NSAssert(sortedItem.indexPathBeforeUpdate.section < [_sections count],
                      @"attempt to move item (%@) that doesn't exist (%ld sections before update)",
-                     sortedItem, (long)[oldSections count]);
-            NSAssert(sortedItem.indexPathBeforeUpdate.item < oldSections[sortedItem.indexPathBeforeUpdate.section].items.count,
+                     sortedItem, (long)[_sections count]);
+            NSAssert(sortedItem.indexPathBeforeUpdate.item < _sections[sortedItem.indexPathBeforeUpdate.section].items.count,
                      @"attempt to move item (%@) that doesn't exist (%ld items in section %ld before update)",
                      sortedItem,
-                     (long)oldSections[sortedItem.indexPathBeforeUpdate.section].items.count,
+                     (long)_sections[sortedItem.indexPathBeforeUpdate.section].items.count,
                      (long)sortedItem.indexPathBeforeUpdate.section);
             
         }
