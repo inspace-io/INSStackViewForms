@@ -43,6 +43,7 @@
 - (void)addItem:(nonnull INSStackFormItem *)item;
 - (void)insertItem:(nonnull INSStackFormItem *)item atIndex:(NSUInteger)index;
 - (void)removeItem:(nonnull INSStackFormItem *)item;
+- (void)removeItemAtIndex:(NSInteger)index;
 
 + (nonnull instancetype)sectionWithBuilder:(nonnull void(^)(INSStackFormSection * __nonnull sectionBuilder))block;
 @end

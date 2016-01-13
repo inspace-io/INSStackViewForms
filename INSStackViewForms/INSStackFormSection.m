@@ -79,4 +79,8 @@
     [self.sectionItems removeObject:item];
 }
 
+- (void)removeItemAtIndex:(NSInteger)index {
+    [self.sectionItems removeObjectAtIndex:index];
+}
+
 @end

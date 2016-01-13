@@ -12,39 +12,41 @@
 @property (nonatomic, strong) NSIndexPath *indexPathBeforeUpdate; // nil for INSStackFormViewUpdateActionInsert
 @property (nonatomic, strong) NSIndexPath *indexPathAfterUpdate;  // nil for INSStackFormViewUpdateActionDelete
 @property (nonatomic, assign) INSStackFormViewUpdateAction updateAction;
+
+@property (nonatomic, assign) INSStackFormSection *section;
+@property (nonatomic, assign) INSStackFormItem *item;
 @end
 
 @implementation INSStackFormViewUpdateItem
 
 - (id)initWithInitialIndexPath:(NSIndexPath *)initialIndexPath
                 finalIndexPath:(NSIndexPath *)finalIndexPath
-                  updateAction:(INSStackFormViewUpdateAction)action {
+                  updateAction:(INSStackFormViewUpdateAction)action section:(INSStackFormSection *)section item:(INSStackFormItem *)item {
     if ((self = [super init])) {
         _indexPathBeforeUpdate = initialIndexPath;
         _indexPathAfterUpdate = finalIndexPath;
         _updateAction = action;
+        _section = section;
+        _item = item;
     }
     return self;
 }
 
 - (id)initWithAction:(INSStackFormViewUpdateAction)action
-        forIndexPath:(NSIndexPath *)indexPath {
+        forIndexPath:(NSIndexPath *)indexPath section:(INSStackFormSection *)section item:(INSStackFormItem *)item {
     if (action == INSStackFormViewUpdateActionInsert)
-        return [self initWithInitialIndexPath:nil finalIndexPath:indexPath updateAction:action];
+        return [self initWithInitialIndexPath:nil finalIndexPath:indexPath updateAction:action section:section item:item];
     else if (action == INSStackFormViewUpdateActionDelete)
-        return [self initWithInitialIndexPath:indexPath finalIndexPath:nil updateAction:action];
+        return [self initWithInitialIndexPath:indexPath finalIndexPath:nil updateAction:action section:section item:item];
     else if (action == INSStackFormViewUpdateActionReload)
-        return [self initWithInitialIndexPath:indexPath finalIndexPath:indexPath updateAction:action];
+        return [self initWithInitialIndexPath:indexPath finalIndexPath:indexPath updateAction:action section:section item:item];
     
     return nil;
 }
 
-- (id)initWithOldIndexPath:(NSIndexPath *)oldIndexPath newIndexPath:(NSIndexPath *)newIndexPath {
-    return [self initWithInitialIndexPath:oldIndexPath finalIndexPath:newIndexPath updateAction:INSStackFormViewUpdateActionMove];
-}
 
 - (BOOL)isSectionOperation {
-    return (_indexPathBeforeUpdate.item == NSNotFound || _indexPathAfterUpdate.item == NSNotFound);
+    return (_indexPathBeforeUpdate.item == NSNotFound || _indexPathAfterUpdate.item == NSNotFound) && self.section;
 }
 
 - (NSComparisonResult)compareIndexPaths:(INSStackFormViewUpdateItem *)otherItem {

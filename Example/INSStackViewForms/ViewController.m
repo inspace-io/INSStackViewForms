@@ -26,7 +26,7 @@
     
     [super viewDidLoad];
 
-    self.stackFormView.dataSource = self;
+//    self.stackFormView.dataSource = self;
     // Do any additional setup after loading the view, typically from a nib.
     
     INSStackFormItem *item = [[INSStackFormItem alloc] init];
@@ -38,11 +38,16 @@
     
     __weak typeof(self) weakSelf = self;
     item.actionBlock = ^(INSStackFormViewBaseElement *view) {
-        [weakSelf.stackFormView removeItem:view.item fromSection:view.section animated:NO completion:nil];
+        [weakSelf.stackFormView beginUpdatesWithAnimation:YES];
+        [weakSelf.stackFormView deleteItems:@[view.item]];
+        [weakSelf.stackFormView endUpdatesWithCompletion:nil];
     };
     
-//    [self.stackFormView insertItem:item atIndex:1 toSection:self.stackFormView.sections[0]];
-    [self.stackFormView  deleteSections:@[self.stackFormView.sections[0]]];
+    [self.stackFormView beginUpdatesWithAnimation:NO];
+    [self.stackFormView addSections:[self sectionsForStackFormView:self.stackFormView]];
+    [self.stackFormView endUpdatesWithCompletion:nil];
+    
+    [self.stackFormView insertItems:@[item] toSection:self.stackFormView.sections[0] atIndex:2];
 }
 
 - (NSArray <INSStackFormSection *> *)sectionsForStackFormView:(INSStackFormView *)stackViewFormView {
@@ -189,7 +194,10 @@
             builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 NSArray *errors = nil;
                 if ([weakSelf.stackFormView validateDataItems:&errors]) {
-                    [weakSelf.stackFormView removeSection:[weakSelf.stackFormView.sections firstObject] animated:YES completion:nil];
+                    [weakSelf.stackFormView beginUpdatesWithAnimation:YES];
+                    [weakSelf.stackFormView deleteSections:@[[weakSelf.stackFormView.sections firstObject]]];
+                    [weakSelf.stackFormView endUpdatesWithCompletion:nil];
+
                 } else {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[errors firstObject] preferredStyle:UIAlertControllerStyleAlert];
                     [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

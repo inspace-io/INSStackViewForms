@@ -7,11 +7,14 @@
 //
 
 @import UIKit;
+#import "INSStackFormSection.h"
+#import "INSStackFormItem.h"
 
 typedef NS_ENUM(NSInteger, INSStackFormViewUpdateAction) {
     INSStackFormViewUpdateActionInsert,
     INSStackFormViewUpdateActionDelete,
     INSStackFormViewUpdateActionReload,
+    INSStackFormViewUpdateActionRefresh,
     INSStackFormViewUpdateActionMove,
     INSStackFormViewUpdateActionNone
 };
@@ -22,15 +25,17 @@ typedef NS_ENUM(NSInteger, INSStackFormViewUpdateAction) {
 @property (nonatomic, readonly, strong) NSIndexPath *indexPathAfterUpdate;  // nil for INSStackFormViewUpdateActionDelete
 @property (nonatomic, readonly, assign) INSStackFormViewUpdateAction updateAction;
 
+@property (nonatomic, readonly, assign) INSStackFormSection *section;
+@property (nonatomic, readonly, assign) INSStackFormItem *item;
 
 - (id)initWithInitialIndexPath:(NSIndexPath *)initialIndexPath
                 finalIndexPath:(NSIndexPath *)finalIndexPath
-                  updateAction:(INSStackFormViewUpdateAction)action;
+                  updateAction:(INSStackFormViewUpdateAction)action section:(INSStackFormSection *)section item:(INSStackFormItem *)item;
 
 - (id)initWithAction:(INSStackFormViewUpdateAction)action
-        forIndexPath:(NSIndexPath *)indexPath;
+        forIndexPath:(NSIndexPath *)indexPath section:(INSStackFormSection *)section item:(INSStackFormItem *)item;
 
-- (id)initWithOldIndexPath:(NSIndexPath *)oldIndexPath newIndexPath:(NSIndexPath *)newIndexPath;
+- (BOOL)isSectionOperation;
 
 - (INSStackFormViewUpdateAction)updateAction;
 

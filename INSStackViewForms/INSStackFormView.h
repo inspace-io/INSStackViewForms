@@ -56,27 +56,29 @@
 - (void)reloadData;
 
 /**
- *  Changes
+ *  Begins a group of updates for the stack view.
  */
+- (void)beginUpdatesWithAnimation:(BOOL)animations;
 
-- (void)beginUpdates;
+/**
+ *  Ends the group of updates the stack view.
+ */
 - (void)endUpdates;
+- (void)endUpdatesWithCompletion:(nullable void(^)())completion;
 
-- (void)insertSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)addSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)insertSections:(nonnull NSArray <INSStackFormSection *> *)sections atIndex:(NSInteger)index;
 - (void)deleteSections:(nonnull NSArray <INSStackFormSection *> *)sections;
 - (void)reloadSections:(nonnull NSArray <INSStackFormSection *> *)sections;
+- (void)refreshSections:(nonnull NSArray <INSStackFormSection *> *)sections;
 - (void)moveSection:(nonnull INSStackFormSection *)section toIndex:(NSInteger)newSectionIndex;
 
+- (void)addItems:(nonnull NSArray <INSStackFormItem *> *)items toSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
 - (void)insertItems:(nonnull NSArray <INSStackFormItem *> *)items toSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
 - (void)deleteItems:(nonnull NSArray <INSStackFormItem *> *)items;
 - (void)reloadItems:(nonnull NSArray <INSStackFormItem *> *)items;
+- (void)refreshItems:(nonnull NSArray <INSStackFormItem *> *)items;
 - (void)moveItems:(nonnull NSArray <INSStackFormItem *> *)items toSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
-
-/**
- *  Recompute the display of the stack form view.
- */
-- (void)refreshViews;
-- (void)refreshViewForItem:(nonnull INSStackFormItem *)item;
 
 /**
  *  Returns item and section for specified identifier.
@@ -90,30 +92,6 @@
  */
 - (nullable NSArray <__kindof UIView *> *)viewsForSection:(nonnull INSStackFormSection *)section;
 - (nullable __kindof UIView *)viewForItem:(nonnull INSStackFormItem *)item inSection:(nonnull INSStackFormSection *)section;
-
-/**
- *  Deletes the view specified by an item in section, with an option to animate the deletion.
- */
-- (void)removeItem:(nonnull INSStackFormItem *)item fromSection:(nonnull INSStackFormSection *)section animated:(BOOL)animated completion:(nullable void(^)())completion;
-- (void)removeItem:(nonnull INSStackFormItem *)item fromSection:(nonnull INSStackFormSection *)section;
-
-/**
- *   Adds the view specified by an item in section.
- */
-- (nonnull __kindof UIView *)addItem:(nonnull INSStackFormItem *)item toSection:(nonnull INSStackFormSection *)section;
-- (nonnull __kindof UIView *)insertItem:(nonnull INSStackFormItem *)item atIndex:(NSUInteger)index toSection:(nonnull INSStackFormSection *)section;
-
-/**
- *  Deletes all views specified by an section, with an option to animate the deletion.
- */
-- (void)removeSection:(nonnull INSStackFormSection *)section animated:(BOOL)animated completion:(nullable void(^)())completion;
-- (void)removeSection:(nonnull INSStackFormSection *)section;
-
-/**
- *  Adds all views specified by section.
- */
-- (nonnull NSArray <__kindof UIView *> *)addSection:(nonnull INSStackFormSection *)section;
-- (nonnull NSArray <__kindof UIView *> *)insertSection:(nonnull INSStackFormSection *)section atIndex:(NSUInteger)index;
 
 /**
  *  Call validationBlock on each items for each sections
