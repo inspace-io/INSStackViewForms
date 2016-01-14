@@ -38,14 +38,12 @@
     
     __weak typeof(self) weakSelf = self;
     item.actionBlock = ^(INSStackFormViewBaseElement *view) {
-        [weakSelf.stackFormView beginUpdatesWithAnimation:YES];
-        [weakSelf.stackFormView deleteItems:@[view.item]];
-        [weakSelf.stackFormView endUpdatesWithCompletion:nil];
+        [weakSelf.stackFormView performBatchUpdates:^{
+            [weakSelf.stackFormView deleteItems:@[view.item]];
+        } completion:nil];
     };
     
-    [self.stackFormView beginUpdatesWithAnimation:NO];
     [self.stackFormView addSections:[self sectionsForStackFormView:self.stackFormView]];
-    [self.stackFormView endUpdatesWithCompletion:nil];
     
     [self.stackFormView insertItems:@[item] toSection:self.stackFormView.sections[0] atIndex:2];
 }
@@ -194,9 +192,9 @@
             builder.actionBlock = ^(INSStackFormViewBaseElement *view) {
                 NSArray *errors = nil;
                 if ([weakSelf.stackFormView validateDataItems:&errors]) {
-                    [weakSelf.stackFormView beginUpdatesWithAnimation:YES];
-                    [weakSelf.stackFormView deleteSections:@[[weakSelf.stackFormView.sections firstObject]]];
-                    [weakSelf.stackFormView endUpdatesWithCompletion:nil];
+                    [weakSelf.stackFormView performBatchUpdates:^{
+                        [weakSelf.stackFormView deleteSections:@[[weakSelf.stackFormView.sections firstObject]]];
+                    } completion:nil];
 
                 } else {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[errors firstObject] preferredStyle:UIAlertControllerStyleAlert];

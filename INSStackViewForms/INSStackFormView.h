@@ -58,13 +58,15 @@
 /**
  *  Begins a group of updates for the stack view.
  */
-- (void)beginUpdatesWithAnimation:(BOOL)animations;
+- (void)beginUpdates;
 
 /**
  *  Ends the group of updates the stack view.
  */
 - (void)endUpdates;
-- (void)endUpdatesWithCompletion:(nullable void(^)())completion;
+- (void)endUpdatesWithCompletion:(nullable void(^)(BOOL finished))completion;
+
+- (void)performBatchUpdates:(nonnull void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
 
 - (void)addSections:(nonnull NSArray <INSStackFormSection *> *)sections;
 - (void)insertSections:(nonnull NSArray <INSStackFormSection *> *)sections atIndex:(NSInteger)index;

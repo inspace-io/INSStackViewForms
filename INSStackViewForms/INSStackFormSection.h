@@ -36,6 +36,8 @@
 
 @property (nonatomic, readonly, nonnull) NSArray <INSStackFormItem *> *items;
 
+@property (nonatomic, readonly, nonnull) NSArray <INSStackFormItem *> *itemsIncludingSupplementaryItems;
+
 - (nonnull INSStackFormItem *)addFooterWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;
 - (nonnull INSStackFormItem *)addHeaderWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;
 - (nonnull INSStackFormItem *)addItemWithBuilder:(nonnull void(^)(INSStackFormItem * __nonnull builder))block;

@@ -35,6 +35,18 @@
     return [self.sectionItems copy];
 }
 
+- (NSArray <INSStackFormItem *> *)itemsIncludingSupplementaryItems {
+    NSMutableArray *array = [self.sectionItems mutableCopy];
+    if (self.headerItem) {
+        [array insertObject:self.headerItem atIndex:0];
+    }
+    if (self.footerItem) {
+        [array addObject:self.footerItem];
+    }
+    return [array copy];
+}
+
+
 + (instancetype)sectionWithBuilder:(void(^)(INSStackFormSection *sectionBuilder))block {
     INSStackFormSection *section = [[INSStackFormSection alloc] init];
     block(section);

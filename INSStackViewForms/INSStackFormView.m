@@ -123,15 +123,9 @@
     _sections = [self initialCollectionSections];
     
     [_sections enumerateObjectsUsingBlock:^(INSStackFormSection * _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (section.headerItem) {
-            [self intitializeAndAddItemViewForItem:section.headerItem section:section];
-        }
-        [section.items enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [section.itemsIncludingSupplementaryItems enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self intitializeAndAddItemViewForItem:obj section:section];
         }];
-        if (section.footerItem) {
-            [self intitializeAndAddItemViewForItem:section.footerItem section:section];
-        }
     }];
     
     self.itemCountsAreValid = YES;
@@ -151,31 +145,23 @@
     [self setNeedsLayout];
 }
 
-- (void)refreshViewForItem:(INSStackFormItem *)item {
+- (void)refreshViewsForItems:(NSArray <INSStackFormItem *> *)items {
     for (INSStackFormSection *section in _sections) {
         __block NSInteger index = [self startIndexForSection:section];
         
-        if (section.headerItem) {
-            if (section.headerItem == item) {
+        [section.itemsIncludingSupplementaryItems enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([items containsObject:obj]) {
                 [self configureItemView:self.arrangedSubviews[index] forItem:section.headerItem section:section];
             }
             index++;
-        }
-        
-        for (INSStackFormItem *sectionItem in section.items) {
-            if (sectionItem == item) {
-                [self configureItemView:self.arrangedSubviews[index] forItem:sectionItem section:section];
-                return;
-            }
-            index++;
-        }
-        if (section.footerItem == item) {
-            [self configureItemView:self.arrangedSubviews[index] forItem:section.footerItem section:section];
-            return;
-        }
+        }];
     }
     
     [self layoutIfNeeded];
+}
+
+- (void)refreshViewForItem:(INSStackFormItem *)item {
+    [self refreshViewsForItems:@[item]];
 }
 
 #pragma mark - Animate Changes
@@ -201,6 +187,10 @@
 
 #pragma mark - Managing Items
 
+- (void)beginUpdates {
+    [self beginUpdatesWithAnimation:YES];
+}
+
 - (void)beginUpdatesWithAnimation:(BOOL)animations {
     [self validateLayout];
     
@@ -213,7 +203,13 @@
     [self endUpdatesWithCompletion:nil];
 }
 
-- (void)endUpdatesWithCompletion:(void(^)())completion {
+- (void)performBatchUpdates:(nonnull void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion {
+    [self beginUpdates];
+    updates();
+    [self endUpdatesWithCompletion:completion];
+}
+
+- (void)endUpdatesWithCompletion:(void(^)(BOOL finished))completion {
 
     NSMutableArray *sortedMutableRefreshItems = [[self.refreshItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
     NSMutableArray *sortedMutableReloadItems = [[self.reloadItems sortedArrayUsingSelector:@selector(compareIndexPaths:)] mutableCopy];
@@ -318,9 +314,7 @@
     
     for (INSStackFormViewUpdateItem *updateItem in sortedMutableRefreshItems) {
         if ([updateItem isSectionOperation]) {
-            for (INSStackFormItem *item in updateItem.section.items) {
-                [self refreshViewForItem:item];
-            }
+            [self refreshViewsForItems:updateItem.section.itemsIncludingSupplementaryItems];
         } else {
             [self refreshViewForItem:updateItem.item];
         }
@@ -385,15 +379,18 @@
         
         for (UIView *view in viewsToShow) {
             view.hidden = YES;
+            view.alpha = 0.0;
         }
         
         [UIView animateWithDuration:0.25 animations:^{
             for (UIView *view in viewsToShow) {
                 view.hidden = NO;
+                view.alpha = 1.0;
             }
             
             for (UIView *view in viewsToRemove) {
                 view.hidden = YES;
+                view.alpha = 0.0;
             }
             
         } completion:^(BOOL finished) {
@@ -407,7 +404,7 @@
             self.userInteractionEnabled = YES;
             [self finishUpdating];
             if (completion) {
-                completion();
+                completion(finished);
             }
         }];
  
@@ -421,7 +418,7 @@
         }
         [self finishUpdating];
         if (completion) {
-            completion();
+            completion(YES);
         }
     }
 
@@ -676,15 +673,7 @@
     
     NSMutableArray *insertedViews = [NSMutableArray array];
     
-    if (section.headerItem) {
-        UIView *itemView = [self intitializeItemViewForItem:section.headerItem section:section];
-        [self insertArrangedSubview:itemView atIndex:startIndex];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==stackView)]|" options:0 metrics:nil views:@{@"stackView": self, @"itemView": itemView}]];
-        
-        [insertedViews addObject:itemView];
-        startIndex++;
-    }
-    [section.items enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [section.itemsIncludingSupplementaryItems enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *itemView = [self intitializeItemViewForItem:obj section:section];
         [self insertArrangedSubview:itemView atIndex:startIndex];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==stackView)]|" options:0 metrics:nil views:@{@"stackView": self, @"itemView": itemView}]];
@@ -692,13 +681,7 @@
         [insertedViews addObject:itemView];
         startIndex++;
     }];
-    if (section.footerItem) {
-        UIView *itemView = [self intitializeItemViewForItem:section.footerItem section:section];
-        [self insertArrangedSubview:itemView atIndex:startIndex];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView(==stackView)]|" options:0 metrics:nil views:@{@"stackView": self, @"itemView": itemView}]];
-        
-        [insertedViews addObject:itemView];
-    }
+
     return [insertedViews copy];
 }
 
@@ -752,11 +735,7 @@
         if (section == searchingSection) {
             return index;
         }
-        
-        if (section.headerItem || section.footerItem) {
-            index++;
-        }
-        index += section.items.count;
+        index += section.itemsIncludingSupplementaryItems.count;
     }
     return NSNotFound;
 }
@@ -804,13 +783,7 @@
     for (INSStackFormSection *object in _sections) {
         if (object == section) {
             NSInteger startIndex = [self startIndexForSection:section];
-            NSInteger itemCount = object.items.count;
-            if (object.headerItem) {
-                itemCount++;
-            }
-            if (object.footerItem) {
-                itemCount++;
-            }
+            NSInteger itemCount = object.itemsIncludingSupplementaryItems.count;
             return [self.arrangedSubviews objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, itemCount)]];
         }
     }
@@ -920,16 +893,8 @@
     
     NSMutableArray *errors = [NSMutableArray array];
     __block BOOL isValid = YES;
-    
-    NSMutableArray *items = [section.items mutableCopy] ?: [@[] mutableCopy];
-    if (section.headerItem) {
-        [items insertObject:section.headerItem atIndex:0];
-    }
-    if (section.footerItem) {
-        [items addObject:section.footerItem];
-    }
-    
-    [items enumerateObjectsUsingBlock:^(INSStackFormItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
+
+    [section.itemsIncludingSupplementaryItems enumerateObjectsUsingBlock:^(INSStackFormItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
         if (item.validationBlock) {
             NSString *errorMessage = nil;
             BOOL isItemValid = item.validationBlock([self viewForItem:item inSection:section],item,&errorMessage);
