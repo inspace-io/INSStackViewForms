@@ -518,6 +518,9 @@
             [view removeFromSuperview];
             *stop = YES;
         } else {
+            if (item == section.headerItem) {
+                startIndex++;
+            }
             [[section.items copy] enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj == item) {
                     [section removeItem:obj];
@@ -538,6 +541,10 @@
     NSUInteger sectionIndex = [_sections indexOfObject:section];
     
     NSInteger startIndex = sectionIndex <= 0 ? 0 : [self startIndexForSection:section];
+    if (section.headerItem) {
+        startIndex++;
+    }
+
     [section insertItem:item atIndex:index];
     
     UIView *itemView = [[item.itemClass alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, [item.height doubleValue])];
