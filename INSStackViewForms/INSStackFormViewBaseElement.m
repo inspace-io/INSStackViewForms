@@ -84,13 +84,16 @@
     if (_selectedBackgroundView != selectedBackgroundView) {
         [_selectedBackgroundView removeFromSuperview];
         _selectedBackgroundView = selectedBackgroundView;
-        _selectedBackgroundView.alpha = 0.0;
-        _selectedBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_selectedBackgroundView];
-        [self sendSubviewToBack:_selectedBackgroundView];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_selectedBackgroundView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_selectedBackgroundView)]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_selectedBackgroundView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_selectedBackgroundView)]];
+        if (_selectedBackgroundView) {
+            _selectedBackgroundView.alpha = 0.0;
+            _selectedBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+            [self addSubview:_selectedBackgroundView];
+            [self sendSubviewToBack:_selectedBackgroundView];
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_selectedBackgroundView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_selectedBackgroundView)]];
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_selectedBackgroundView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_selectedBackgroundView)]];
+        }
     }
 }
 

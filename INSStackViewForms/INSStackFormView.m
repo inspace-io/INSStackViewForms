@@ -518,7 +518,7 @@
             [view removeFromSuperview];
             *stop = YES;
         } else {
-            if (item == section.headerItem) {
+            if (section.headerItem) {
                 startIndex++;
             }
             [[section.items copy] enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
