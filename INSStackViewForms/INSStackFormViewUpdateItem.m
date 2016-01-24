@@ -38,7 +38,7 @@
         return [self initWithInitialIndexPath:nil finalIndexPath:indexPath updateAction:action section:section item:item];
     else if (action == INSStackFormViewUpdateActionDelete)
         return [self initWithInitialIndexPath:indexPath finalIndexPath:nil updateAction:action section:section item:item];
-    else if (action == INSStackFormViewUpdateActionReload)
+    else if (action == INSStackFormViewUpdateActionReload || action == INSStackFormViewUpdateActionRefresh)
         return [self initWithInitialIndexPath:indexPath finalIndexPath:indexPath updateAction:action section:section item:item];
     
     return nil;

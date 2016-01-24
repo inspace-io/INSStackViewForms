@@ -151,7 +151,7 @@
         
         [section.itemsIncludingSupplementaryItems enumerateObjectsUsingBlock:^(INSStackFormItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([items containsObject:obj]) {
-                [self configureItemView:self.arrangedSubviews[index] forItem:section.headerItem section:section];
+                [self configureItemView:self.arrangedSubviews[index] forItem:obj section:section];
             }
             index++;
         }];

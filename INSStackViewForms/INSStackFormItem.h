@@ -41,6 +41,7 @@ typedef BOOL(^INSStackFormItemValidationBlock)(__kindof UIView * __nullable view
 
 @property (nonatomic, copy, nullable) INSStackFormItemBlock configurationBlock;
 @property (nonatomic, copy, nullable) INSStackFormItemBlock actionBlock;
+@property (nonatomic, copy, nullable) INSStackFormItemBlock valueChangedBlock;
 @property (nonatomic, copy, nullable) INSStackFormItemValidationBlock validationBlock;
 
 @end
