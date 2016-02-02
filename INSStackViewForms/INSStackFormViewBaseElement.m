@@ -56,6 +56,12 @@
 @end
 
 @implementation INSStackFormViewBaseElement
+@synthesize delimiterColor = _delimiterColor;
+@synthesize topDelimiterColor = _topDelimiterColor;
+@synthesize bottomDelimiterColor = _bottomDelimiterColor;
+@synthesize leftDelimiterColor = _leftDelimiterColor;
+@synthesize rightDelimiterColor = _rightDelimiterColor;
+
 
 + (NSBundle *)resourcesBundle {
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"INSStackViewForms" ofType:@"bundle"];
@@ -146,6 +152,34 @@
         [self setupDefaultValues];
     }
     return self;
+}
+
+- (void)setDelimiterColor:(UIColor *)delimiterColor {
+    _delimiterColor = delimiterColor;
+    self.topDelimiterColor = _delimiterColor;
+    self.bottomDelimiterColor = _delimiterColor;
+    self.leftDelimiterColor = _delimiterColor;
+    self.rightDelimiterColor = _delimiterColor;
+}
+
+- (void)setTopDelimiterColor:(UIColor *)topDelimiterColor {
+    _topDelimiterColor = topDelimiterColor;
+    self.topDelimiter.backgroundColor = _topDelimiterColor;
+}
+
+- (void)setBottomDelimiterColor:(UIColor *)bottomDelimiterColor {
+    _bottomDelimiterColor = bottomDelimiterColor;
+    self.bottomDelimiter.backgroundColor = _bottomDelimiterColor;
+}
+
+- (void)setLeftDelimiterColor:(UIColor *)leftDelimiterColor {
+    _leftDelimiterColor = leftDelimiterColor;
+    self.leftDelimiter.backgroundColor = _leftDelimiterColor;
+}
+
+- (void)setRightDelimiterColor:(UIColor *)rightDelimiterColor {
+    _rightDelimiterColor = rightDelimiterColor;
+    self.rightDelimiter.backgroundColor = _rightDelimiterColor;
 }
 
 - (UIColor *)delimiterColor {
