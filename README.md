@@ -78,7 +78,7 @@ If you want to support <iOS9 where UIStackView is not available, solution is to 
 
 Add the following to your `Podfile` and run `$ pod install`.
 
-Cocoapods support iOS9
+CocoaPods support iOS9
 
 ``` ruby
 pod 'INSStackViewForms'
@@ -86,7 +86,7 @@ pod 'INSStackViewForms'
 
 If you want to support <iOS9 where UIStackView is not available, solution is to use [OAStackView](https://github.com/oarrabi/OAStackView). I prepared subspec to make it easier.
 
-Cocoapods support <iOS9
+CocoaPods support <iOS9
 
 ``` ruby
 pod 'INSStackViewForms/OAStackView'
