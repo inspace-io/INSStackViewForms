@@ -59,7 +59,7 @@
  *  Begins a group of updates for the stack view.
  */
 - (void)beginUpdates;
-
+- (void)beginUpdatesWithAnimation:(BOOL)animations;
 /**
  *  Ends the group of updates the stack view.
  */
