@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'INSStackViewForms'
-  s.version  = '1.2.4'
+  s.version  = '1.2.6'
   s.license  = 'MIT'
   s.summary  = 'INSStackViewForms - iOS library to create dynamic UIStackView forms'
   s.homepage = 'http://inspace.io'
