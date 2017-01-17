@@ -26,7 +26,7 @@
 #import "INSStackFormViewBaseElement.h"
 
 @interface INSStackFormViewBaseElement ()
-@property (nonatomic, strong, nullable) INSStackFormView *stackFormView;
-@property (nonatomic, strong, nullable) INSStackFormSection *section;
-@property (nonatomic, strong, nullable) INSStackFormItem *item;
+@property (nonatomic, weak, nullable) INSStackFormView *stackFormView;
+@property (nonatomic, weak, nullable) INSStackFormSection *section;
+@property (nonatomic, weak, nullable) INSStackFormItem *item;
 @end

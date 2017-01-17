@@ -36,9 +36,9 @@ typedef NS_ENUM(NSInteger, INSStackFormViewBaseElementAccessoryType) {
 };
 
 @interface INSStackFormViewBaseElement : UIControl
-@property (nonatomic, strong, readonly, nullable) INSStackFormView *stackFormView;
-@property (nonatomic, strong, readonly, nullable) INSStackFormSection *section;
-@property (nonatomic, strong, readonly, nullable) INSStackFormItem *item;
+@property (nonatomic, weak, readonly, nullable) INSStackFormView *stackFormView;
+@property (nonatomic, weak, readonly, nullable) INSStackFormSection *section;
+@property (nonatomic, weak, readonly, nullable) INSStackFormItem *item;
 
 @property (nonatomic, readonly, strong, nonnull) UIView *contentView;
 @property (nonatomic, strong, nullable) UIView *accessoryView;
